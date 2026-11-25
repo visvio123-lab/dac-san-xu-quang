@@ -1,0 +1,51 @@
+/* ==========================================================================
+   variables.css — Bảng màu thương hiệu & Hệ thống thiết kế Đặc Sản Xứ Quảng
+   Tông màu: Nâu đất, kem giấy dó, đỏ gạch, nâu đậm, trắng ngà
+   ========================================================================== */
+
+:root {
+  /* Bảng màu thương hiệu cốt lõi */
+  --color-cream: #f7f1e5;          /* Kem giấy dó – nền chính */
+  --color-cream-deep: #efe5d2;     /* Kem giấy dó đậm – nền xen kẽ */
+  --color-ivory: #fdfbf7;          /* Trắng ngà – nền thẻ, modal */
+  --color-earth: #8b5a3c;          /* Nâu đất – điểm nhấn mộc mạc */
+  --color-earth-light: #b07d5b;    /* Nâu đất sáng */
+  --color-brick: #b4462b;          /* Đỏ gạch – CTA, tiêu điểm */
+  --color-brick-dark: #92341d;     /* Đỏ gạch đậm – hover */
+  --color-brick-soft: #f6e4de;     /* Đỏ gạch nhạt – nền tag */
+  --color-dark: #2c1d14;           /* Nâu đậm – chữ chính & Footer */
+  --color-dark-soft: #4a3426;      /* Nâu vừa – chữ phụ */
+  --color-muted: #755d4e;          /* Nâu xám – chú thích */
+  --color-gold: #c8963e;           /* Vàng mật – sao Best-seller */
+  --color-gold-soft: #fbf2df;      /* Vàng nhạt */
+  --color-sage: #546642;           /* Xanh lá mộc – điểm nhấn phụ */
+
+  /* Đường viền & bóng đổ */
+  --border-subtle: rgba(44, 29, 20, 0.11);
+  --border-strong: rgba(44, 29, 20, 0.22);
+  --shadow-sm: 0 2px 10px rgba(44, 29, 20, 0.06);
+  --shadow-md: 0 10px 28px rgba(44, 29, 20, 0.09);
+  --shadow-lg: 0 24px 56px rgba(44, 29, 20, 0.18);
+
+  /* Phông chữ (hỗ trợ đầy đủ dấu tiếng Việt) */
+  --font-serif: 'Playfair Display', 'Times New Roman', Georgia, serif;
+  --font-sans: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Khoảng cách & bố cục */
+  --container-max: 1240px;
+  --container-narrow: 860px;
+  --header-height: 76px;
+  --section-py: clamp(4rem, 7vw, 6.25rem);
+
+  /* Bo góc */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-pill: 999px;
+
+  /* Chuyển động */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --transition-fast: 0.2s var(--ease-out);
+  --transition-base: 0.35s var(--ease-out);
+  --transition-slow: 0.55s var(--ease-out);
+}

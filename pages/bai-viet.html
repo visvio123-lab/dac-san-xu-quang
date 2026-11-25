@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Góc Văn hóa &amp; Làng nghề – Đặc Sản Xứ Quảng</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body data-page="story">
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../index.html" class="brand-logo" aria-label="Đặc Sản Xứ Quảng – Trang chủ">
+        <img src="../assets/images/logo.svg" alt="Đặc Sản Xứ Quảng" width="230" height="44">
+      </a>
+
+      <nav class="main-nav" id="main-nav" aria-label="Điều hướng chính">
+        <a href="../index.html">Trang chủ</a>
+        <a href="khu-vuc.html">Khám phá theo khu vực</a>
+        <a href="../index.html#thu-vien-mon">Danh sách món ăn</a>
+        <a href="bai-viet.html" class="is-active">Câu chuyện văn hóa</a>
+        <a href="../index.html#lien-he">Liên hệ</a>
+      </nav>
+
+      <div class="header-actions">
+        <form class="header-search" id="header-search-form" role="search">
+          <svg class="header-search__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+          </svg>
+          <label for="header-search-input" class="sr-only">Tìm nhanh món đặc sản</label>
+          <input type="search" id="header-search-input" placeholder="Tìm món đặc sản..." autocomplete="off">
+        </form>
+        <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Mở menu điều hướng" aria-expanded="false" aria-controls="main-nav">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-banner">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Đường dẫn">
+          <a href="../index.html">Trang chủ</a>
+          <span class="breadcrumb__sep">/</span>
+          <a href="../index.html#van-hoa">Góc Văn hóa &amp; Làng nghề</a>
+          <span class="breadcrumb__sep">/</span>
+          <span id="crumb-story-title">Bài viết</span>
+        </nav>
+        <p id="story-banner-meta" style="font-size:0.84rem;text-transform:uppercase;letter-spacing:0.12em;color:#f4c77b;font-weight:700;margin-bottom:0.55rem;"></p>
+        <h1 id="story-banner-title">Chuyện Nghề, Chuyện Mùa Xứ Quảng</h1>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="detail-layout">
+          <article class="detail-card" id="story-article"></article>
+
+          <aside>
+            <div class="sidebar-box">
+              <h3>Bài viết khác cùng chuyên mục</h3>
+              <div class="mini-dish-list" id="other-stories-list"></div>
+            </div>
+
+            <div class="sidebar-box" style="background-color:var(--color-cream);">
+              <h3>Tạp chí Đặc Sản Xứ Quảng</h3>
+              <p style="font-size:0.88rem;color:var(--color-dark-soft);margin-bottom:1rem;">
+                Khám phá thêm câu chuyện về các vùng đất và hơn 30 món ngon đậm đà vị quê Quảng Ngãi.
+              </p>
+              <a href="../index.html#thu-vien-mon" class="btn btn--primary btn--sm" style="width:100%;">Xem thư viện đặc sản</a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">Nhắc tới trong bài viết</span>
+          <h2 class="section-title">Các Đặc Sản Liên Quan</h2>
+        </div>
+        <div class="dishes-grid" id="story-related-dishes"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-brand__title">Đặc Sản Xứ Quảng</div>
+          <div class="footer-brand__slogan">“Đậm Đà Vị Quê – Trọn Tình Xứ Quảng”</div>
+          <p>Cổng thông tin &amp; cẩm nang lưu giữ, giới thiệu văn hóa ẩm thực Quảng Ngãi theo từng vùng miền.</p>
+        </div>
+        <div>
+          <h3 class="footer-heading">Nhóm món đặc sản</h3>
+          <ul class="footer-links">
+            <li><a href="../index.html?cat=mon-chinh#thu-vien-mon">Món chính &amp; Món nước</a></li>
+            <li><a href="../index.html?cat=ram#thu-vien-mon">Các loại Ram đặc sản</a></li>
+            <li><a href="../index.html?cat=an-vat#thu-vien-mon">Ăn vặt &amp; Đường phố</a></li>
+            <li><a href="../index.html?cat=hai-san#thu-vien-mon">Hải sản &amp; Đảo Lý Sơn</a></li>
+            <li><a href="../index.html?cat=nui-rung#thu-vien-mon">Núi rừng &amp; Đồng quê</a></li>
+            <li><a href="../index.html?cat=qua-bieu#thu-vien-mon">Quà biếu &amp; Bánh kẹo</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="footer-heading">Vùng ẩm thực</h3>
+          <ul class="footer-links">
+            <li><a href="khu-vuc.html?id=tp-quang-ngai">Trung tâm TP. Quảng Ngãi</a></li>
+            <li><a href="khu-vuc.html?id=an-phu-co-luy">Xã An Phú – Cổ Lũy</a></li>
+            <li><a href="khu-vuc.html?id=ly-son">Đảo Lý Sơn</a></li>
+            <li><a href="khu-vuc.html?id=tra-bong">Vùng cao Trà Bồng</a></li>
+            <li><a href="khu-vuc.html?id=lang-nghe">Làng nghề truyền thống</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="footer-heading">Thông tin liên hệ</h3>
+          <div class="footer-contact-list">
+            <div><strong>Điện thoại:</strong> <a href="tel:0385940317" style="color:#f4c77b;font-weight:700;">0385 940 317</a></div>
+            <div><strong>Khu vực trọng tâm:</strong> Quảng Ngãi (TP. Quảng Ngãi, Xã An Phú – Nghĩa An/Nghĩa Phú, Đảo Lý Sơn, Trà Bồng, Mộ Đức, Đức Phổ...)</div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Đặc Sản Xứ Quảng. Bảo lưu mọi quyền.</span>
+        <span>Cẩm nang giới thiệu văn hóa ẩm thực Quảng Ngãi</span>
+      </div>
+    </div>
+  </footer>
+
+  <button type="button" class="back-to-top" id="back-to-top" aria-label="Về đầu trang">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+  </button>
+
+  <script src="../js/data/categories.js"></script>
+  <script src="../js/data/regions.js"></script>
+  <script src="../js/data/dishes.js"></script>
+  <script src="../js/data/stories.js"></script>
+  <script src="../js/modules/render.js"></script>
+  <script src="../js/modules/modal.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>

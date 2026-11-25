@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 296 56" fill="none" role="img" aria-label="Đặc Sản Xứ Quảng">
+  <!-- Emblem: Núi Thiên Ấn & Sông Trà trong ấn triện mộc -->
+  <rect x="2" y="4" width="48" height="48" rx="12" fill="#B4462B"/>
+  <rect x="6" y="8" width="40" height="40" rx="8" stroke="#F7F1E5" stroke-width="1.2" stroke-opacity="0.55"/>
+  <!-- Núi Thiên Ấn (đỉnh bằng) -->
+  <path d="M12 31 L20 19 L32 19 L40 31 Z" fill="#F7F1E5" fill-opacity="0.92"/>
+  <!-- Vầng mặt trời quê -->
+  <circle cx="35" cy="15" r="3" fill="#F4C77B"/>
+  <!-- Sóng sông Trà Khúc -->
+  <path d="M10 35 Q16 32 22 35 T34 35 T42 35" stroke="#F7F1E5" stroke-width="2" stroke-linecap="round" fill="none"/>
+  <path d="M13 40 Q19 37.5 25 40 T37 40" stroke="#F4C77B" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+  <!-- Brand Wordmark -->
+  <text x="60" y="27" font-family="'Playfair Display', Georgia, serif" font-size="20.5" font-weight="700" fill="#2C1D14" letter-spacing="0.2">Đặc Sản Xứ Quảng</text>
+  <text x="61" y="44" font-family="'Be Vietnam Pro', system-ui, sans-serif" font-size="9.8" font-weight="600" fill="#8B5A3C" letter-spacing="0.85">CẨM NANG ẨM THỰC QUẢNG NGÃI</text>
+</svg>
