@@ -739,6 +739,19 @@
   overflow: hidden;
 }
 
+.dish-modal__hero .media-fallback {
+  background:
+    radial-gradient(circle at 22% 20%, rgba(200, 150, 62, 0.28), transparent 52%),
+    radial-gradient(circle at 80% 30%, rgba(180, 70, 43, 0.22), transparent 55%),
+    linear-gradient(145deg, #d8c2a1 0%, #bfa17c 100%);
+  padding-bottom: 4.5rem;
+}
+
+.dish-modal__hero .media-fallback__title,
+.dish-modal__hero .media-fallback__sub {
+  display: none;
+}
+
 .dish-modal__hero img {
   width: 100%;
   height: 100%;
@@ -1151,4 +1164,284 @@
 .back-to-top:hover {
   background-color: var(--color-brick);
   transform: translateY(-3px);
+}
+
+/* ---------------- LỘ TRÌNH FOOD TOUR 1 NGÀY ---------------- */
+.foodtour-tabs {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  background-color: var(--color-cream);
+  padding: 0.35rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-subtle);
+}
+
+.foodtour-tab {
+  padding: 0.58rem 1.15rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.87rem;
+  font-weight: 600;
+  color: var(--color-dark-soft);
+  transition: background-color var(--transition-fast), color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.foodtour-tab:hover {
+  color: var(--color-brick);
+}
+
+.foodtour-tab.is-active {
+  background-color: var(--color-brick);
+  color: var(--color-ivory);
+  box-shadow: 0 5px 14px rgba(180, 70, 43, 0.25);
+}
+
+.foodtour-summary-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  padding: 1.45rem 1.75rem;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, #f7f1e5 0%, #efe5d2 100%);
+  border: 1px solid var(--border-subtle);
+  margin-bottom: 2rem;
+}
+
+.foodtour-summary-bar__badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.22rem 0.68rem;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-brick-soft);
+  color: var(--color-brick);
+  margin-bottom: 0.5rem;
+}
+
+.foodtour-summary-bar__title {
+  font-size: clamp(1.3rem, 2.2vw, 1.65rem);
+  margin-bottom: 0.35rem;
+}
+
+.foodtour-summary-bar__desc {
+  font-size: 0.92rem;
+  color: var(--color-dark-soft);
+  max-width: 680px;
+}
+
+.foodtour-budget {
+  background-color: var(--color-ivory);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 0.9rem 1.25rem;
+  min-width: 240px;
+  box-shadow: var(--shadow-sm);
+}
+
+.foodtour-budget__label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-muted);
+  margin-bottom: 0.25rem;
+}
+
+.foodtour-budget__val {
+  font-size: 0.92rem;
+  color: var(--color-brick-dark);
+}
+
+.foodtour-timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.foodtour-timeline::before {
+  content: '';
+  position: absolute;
+  left: 21px;
+  top: 22px;
+  bottom: 22px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--color-brick) 0%, var(--color-earth-light) 100%);
+  opacity: 0.35;
+}
+
+.foodtour-stop {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.foodtour-stop__rail {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  padding-top: 0.3rem;
+}
+
+.foodtour-stop__dot {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: var(--color-brick);
+  color: var(--color-ivory);
+  font-family: var(--font-serif);
+  font-size: 0.96rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 16px rgba(180, 70, 43, 0.28);
+  border: 3px solid var(--color-ivory);
+}
+
+.foodtour-stop__card {
+  background-color: var(--color-cream);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.35rem 1.5rem;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.foodtour-stop__card:hover {
+  border-color: rgba(180, 70, 43, 0.32);
+  box-shadow: var(--shadow-sm);
+}
+
+.foodtour-stop__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-bottom: 0.65rem;
+}
+
+.foodtour-time {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.26rem 0.8rem;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-dark);
+  color: #f4c77b;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.foodtour-stop__title {
+  font-size: 1.22rem;
+  margin-bottom: 0.45rem;
+}
+
+.foodtour-stop__note {
+  font-size: 0.93rem;
+  color: var(--color-dark-soft);
+  margin-bottom: 1rem;
+}
+
+.foodtour-dishes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 0.95rem;
+}
+
+.foodtour-dish-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.42rem 0.9rem 0.42rem 0.42rem;
+  border-radius: var(--radius-md);
+  background-color: var(--color-ivory);
+  border: 1px solid var(--border-strong);
+  text-align: left;
+  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.foodtour-dish-pill:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-brick);
+  box-shadow: var(--shadow-sm);
+}
+
+.foodtour-dish-pill__thumb {
+  width: 48px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  flex-shrink: 0;
+  background-color: var(--color-cream-deep);
+}
+
+.foodtour-dish-pill__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.foodtour-dish-pill__thumb .media-fallback {
+  padding: 0;
+}
+
+.foodtour-dish-pill__thumb .media-fallback::before,
+.foodtour-dish-pill__thumb .media-fallback__title,
+.foodtour-dish-pill__thumb .media-fallback__sub {
+  display: none;
+}
+
+.foodtour-dish-pill__thumb .media-fallback__icon {
+  width: 28px;
+  height: 28px;
+  margin: 0;
+}
+
+.foodtour-dish-pill__thumb .media-fallback__icon svg {
+  width: 15px;
+  height: 15px;
+}
+
+.foodtour-dish-pill__info {
+  display: flex;
+  flex-direction: column;
+}
+
+.foodtour-dish-pill__name {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-dark);
+  line-height: 1.25;
+}
+
+.foodtour-dish-pill:hover .foodtour-dish-pill__name {
+  color: var(--color-brick);
+}
+
+.foodtour-dish-pill__meta {
+  font-size: 0.74rem;
+  color: var(--color-earth);
+  font-weight: 600;
+}
+
+.foodtour-stop__tip {
+  font-size: 0.84rem;
+  color: var(--color-muted);
+  padding-top: 0.75rem;
+  border-top: 1px dashed var(--border-strong);
+}
+
+.foodtour-stop__tip strong {
+  color: var(--color-brick);
 }

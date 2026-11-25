@@ -144,6 +144,31 @@
     // 1.3 Thư viện toàn bộ đặc sản + Bộ lọc
     XQ.Filter.init();
 
+    // 1.3b Lộ trình thưởng thức 1 ngày (Food Tour gợi ý)
+    var ftTabs = document.getElementById('foodtour-tabs');
+    var ftContent = document.getElementById('foodtour-content');
+    if (ftTabs && ftContent && (XQ.foodTours || []).length) {
+      var activeTourId = XQ.foodTours[0].id;
+
+      function renderFoodTourUI(tourId) {
+        activeTourId = tourId;
+        var tour = XQ.foodTours.find(function (t) { return t.id === tourId; }) || XQ.foodTours[0];
+        ftTabs.innerHTML = XQ.foodTours.map(function (t) {
+          var active = t.id === tour.id;
+          return '<button type="button" class="foodtour-tab' + (active ? ' is-active' : '') + '" data-tour-id="' + XQ.escapeHtml(t.id) + '" role="tab" aria-selected="' + active + '">' + XQ.escapeHtml(t.short) + '</button>';
+        }).join('');
+        ftContent.innerHTML = XQ.renderFoodTour(tour, '');
+      }
+
+      renderFoodTourUI(activeTourId);
+
+      ftTabs.addEventListener('click', function (e) {
+        var btn = e.target.closest('[data-tour-id]');
+        if (!btn) return;
+        renderFoodTourUI(btn.getAttribute('data-tour-id'));
+      });
+    }
+
     // 1.4 Góc Văn hóa & Làng nghề
     var storiesGrid = document.getElementById('stories-grid');
     if (storiesGrid) {

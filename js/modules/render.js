@@ -242,3 +242,72 @@ XQ.renderDishDetailSections = function (dish) {
     '</section>'
   );
 };
+
+/**
+ * Tạo HTML cho 1 lộ trình Food Tour gợi ý theo các khung giờ trong ngày.
+ */
+XQ.renderFoodTour = function (tour, basePath) {
+  basePath = basePath || '';
+  if (!tour) return '';
+
+  var stopsHtml = (tour.stops || []).map(function (stop, idx) {
+    var dishesHtml = (stop.dishes || []).map(function (dishId) {
+      var dish = XQ.getDish(dishId);
+      if (!dish) return '';
+      var cat = XQ.getCategory(dish.category);
+      var iconKey = cat ? cat.icon : 'bowl';
+      return (
+        '<button type="button" class="foodtour-dish-pill" data-dish-id="' + XQ.escapeHtml(dish.id) + '" aria-label="Xem chi tiết món ' + XQ.escapeHtml(dish.name) + '">' +
+          '<span class="foodtour-dish-pill__thumb">' +
+            '<img src="' + XQ.escapeHtml(XQ.imgPath(dish.image, basePath)) + '"' +
+              ' alt="' + XQ.escapeHtml(dish.name) + '"' +
+              ' loading="lazy"' +
+              ' data-fallback-title=""' +
+              ' data-fallback-sub=""' +
+              ' data-fallback-icon="' + XQ.escapeHtml(iconKey) + '"' +
+              ' onerror="XQ.onImgError(this)">' +
+          '</span>' +
+          '<span class="foodtour-dish-pill__info">' +
+            '<span class="foodtour-dish-pill__name">' + XQ.escapeHtml(dish.name) + '</span>' +
+            '<span class="foodtour-dish-pill__meta">' + XQ.escapeHtml(dish.price || 'Xem chi tiết') + ' · Chi tiết →</span>' +
+          '</span>' +
+        '</button>'
+      );
+    }).join('');
+
+    return (
+      '<article class="foodtour-stop">' +
+        '<div class="foodtour-stop__rail">' +
+          '<span class="foodtour-stop__dot">0' + (idx + 1) + '</span>' +
+        '</div>' +
+        '<div class="foodtour-stop__card">' +
+          '<div class="foodtour-stop__top">' +
+            '<span class="foodtour-time">' + XQ.escapeHtml(stop.time) + ' · ' + XQ.escapeHtml(stop.period) + '</span>' +
+            '<span class="region-tag" style="margin-bottom:0">' + XQ.icons.pin + ' ' + XQ.escapeHtml(stop.area) + '</span>' +
+          '</div>' +
+          '<h3 class="foodtour-stop__title">' + XQ.escapeHtml(stop.title) + '</h3>' +
+          '<p class="foodtour-stop__note">' + XQ.escapeHtml(stop.note) + '</p>' +
+          '<div class="foodtour-dishes">' + dishesHtml + '</div>' +
+          (stop.tip
+            ? '<p class="foodtour-stop__tip"><strong>Mẹo nhỏ:</strong> ' + XQ.escapeHtml(stop.tip) + '</p>'
+            : '') +
+        '</div>' +
+      '</article>'
+    );
+  }).join('');
+
+  return (
+    '<div class="foodtour-summary-bar">' +
+      '<div>' +
+        '<span class="foodtour-summary-bar__badge">' + XQ.escapeHtml(tour.badge) + '</span>' +
+        '<h3 class="foodtour-summary-bar__title">' + XQ.escapeHtml(tour.name) + '</h3>' +
+        '<p class="foodtour-summary-bar__desc">' + XQ.escapeHtml(tour.summary) + '</p>' +
+      '</div>' +
+      '<div class="foodtour-budget">' +
+        '<span class="foodtour-budget__label">Chi phí tham khảo</span>' +
+        '<strong class="foodtour-budget__val">' + XQ.escapeHtml(tour.budget) + '</strong>' +
+      '</div>' +
+    '</div>' +
+    '<div class="foodtour-timeline">' + stopsHtml + '</div>'
+  );
+};
