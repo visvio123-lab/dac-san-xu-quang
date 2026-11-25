@@ -1445,3 +1445,292 @@
 .foodtour-stop__tip strong {
   color: var(--color-brick);
 }
+
+/* Thẻ mời gọn trên Trang chủ mở Lộ trình sang tab mới */
+.foodtour-teaser {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+  padding: clamp(1.6rem, 3.5vw, 2.5rem);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, #f7f1e5 0%, #ede0c8 100%);
+  border: 1px solid rgba(180, 70, 43, 0.24);
+  box-shadow: var(--shadow-sm);
+}
+
+.foodtour-teaser__content {
+  flex: 1;
+  min-width: 280px;
+}
+
+.foodtour-teaser__pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.foodtour-teaser__pills span {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.32rem 0.8rem;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-ivory);
+  border: 1px solid var(--border-subtle);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-dark-soft);
+}
+
+.foodtour-teaser__cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.foodtour-teaser__hint {
+  font-size: 0.78rem;
+  color: var(--color-muted);
+}
+
+/* Trang riêng lo-trinh.html: Thanh tuyến + 2 cột Timeline & Google Maps */
+.foodtour-page-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.foodtour-summary-bar__dist {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.6rem;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--color-earth);
+}
+
+.foodtour-summary-bar__dist svg {
+  width: 15px;
+  height: 15px;
+  color: var(--color-brick);
+  flex-shrink: 0;
+}
+
+.foodtour-split {
+  display: grid;
+  grid-template-columns: 1.18fr 0.82fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.foodtour-leg {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-earth);
+  background-color: var(--color-ivory);
+  padding: 0.24rem 0.7rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-subtle);
+}
+
+.place-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.place-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 0.9rem 1.05rem;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-ivory);
+  border: 1px solid var(--border-subtle);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.place-item.is-active {
+  border-color: var(--color-brick);
+  box-shadow: 0 0 0 3px rgba(180, 70, 43, 0.12);
+}
+
+.place-item__main {
+  flex: 1;
+  min-width: 210px;
+}
+
+.place-item__name {
+  font-family: var(--font-serif);
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--color-dark);
+  margin-bottom: 0.2rem;
+}
+
+.place-item__addr {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.35rem;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--color-dark-soft);
+  margin-bottom: 0.25rem;
+}
+
+.place-item__addr svg {
+  width: 14px;
+  height: 14px;
+  color: var(--color-brick);
+  flex-shrink: 0;
+  margin-top: 0.22rem;
+}
+
+.place-item__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  font-size: 0.78rem;
+  color: var(--color-muted);
+}
+
+.place-item__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.place-item.is-active .place-pin-btn {
+  background-color: var(--color-brick);
+  border-color: var(--color-brick);
+  color: var(--color-ivory);
+}
+
+.place-dir-link {
+  font-size: 0.83rem;
+}
+
+.foodtour-dishes-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-muted);
+  margin-bottom: 0.55rem;
+}
+
+/* Khung bản đồ Google Maps ghim dính cột phải */
+.foodtour-map-panel {
+  position: sticky;
+  top: calc(var(--header-height) + 1.25rem);
+}
+
+.map-card {
+  background-color: var(--color-ivory);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  box-shadow: var(--shadow-md);
+}
+
+.map-card__head {
+  margin-bottom: 0.9rem;
+}
+
+.map-card__eyebrow {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-brick);
+  margin-bottom: 0.25rem;
+}
+
+.map-card__title {
+  font-size: 1.18rem;
+  margin-bottom: 0.2rem;
+}
+
+.map-card__addr {
+  font-size: 0.84rem;
+  color: var(--color-muted);
+}
+
+.map-card__frame {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  background-color: var(--color-cream-deep);
+  aspect-ratio: 4 / 3;
+  margin-bottom: 0.9rem;
+}
+
+.map-card__frame iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+.map-card__actions {
+  display: flex;
+  gap: 0.65rem;
+  margin-bottom: 1rem;
+}
+
+.map-quick-list {
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.map-quick-list__label {
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-muted);
+  margin-bottom: 0.55rem;
+}
+
+.map-quick-list__items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.map-quick-pin {
+  text-align: left;
+  padding: 0.45rem 0.7rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.83rem;
+  color: var(--color-dark-soft);
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.map-quick-pin span {
+  font-weight: 700;
+  color: var(--color-brick);
+}
+
+.map-quick-pin:hover {
+  background-color: var(--color-cream);
+}
+
+.map-quick-pin.is-active {
+  background-color: var(--color-brick-soft);
+  color: var(--color-brick-dark);
+  font-weight: 600;
+}

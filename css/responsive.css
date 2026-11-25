@@ -60,8 +60,13 @@
 
   .intro-grid,
   .contact-strip,
-  .detail-layout {
+  .detail-layout,
+  .foodtour-split {
     grid-template-columns: 1fr;
+  }
+
+  .foodtour-map-panel {
+    position: static;
   }
 
   .bestseller-grid,

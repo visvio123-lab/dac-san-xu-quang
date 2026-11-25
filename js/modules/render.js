@@ -244,13 +244,81 @@ XQ.renderDishDetailSections = function (dish) {
 };
 
 /**
- * Tạo HTML cho 1 lộ trình Food Tour gợi ý theo các khung giờ trong ngày.
+ * Tạo đường dẫn Google Maps tìm kiếm hoặc chỉ đường cho 1 địa điểm / cả tuyến.
  */
-XQ.renderFoodTour = function (tour, basePath) {
+XQ.gmapsSearchUrl = function (query) {
+  return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(query || 'Quang Ngai, Vietnam');
+};
+
+XQ.gmapsEmbedUrl = function (query) {
+  return 'https://maps.google.com/maps?q=' + encodeURIComponent(query || 'TP Quang Ngai, Vietnam') + '&hl=vi&z=15&output=embed';
+};
+
+XQ.gmapsRouteUrl = function (tour) {
+  var queries = [];
+  (tour && tour.stops || []).forEach(function (stop) {
+    if (stop.places && stop.places.length) {
+      queries.push(stop.places[0].mapQuery || stop.places[0].address);
+    }
+  });
+  if (!queries.length) return XQ.gmapsSearchUrl('TP Quang Ngai, Vietnam');
+  return 'https://www.google.com/maps/dir/' + queries.map(encodeURIComponent).join('/');
+};
+
+/**
+ * Tạo HTML phần tóm tắt của 1 lộ trình Food Tour.
+ */
+XQ.renderFoodTourSummary = function (tour) {
+  if (!tour) return '';
+  return (
+    '<div class="foodtour-summary-bar">' +
+      '<div>' +
+        '<span class="foodtour-summary-bar__badge">' + XQ.escapeHtml(tour.badge) + '</span>' +
+        '<h2 class="foodtour-summary-bar__title">' + XQ.escapeHtml(tour.name) + '</h2>' +
+        '<p class="foodtour-summary-bar__desc">' + XQ.escapeHtml(tour.summary) + '</p>' +
+        (tour.distance ? '<p class="foodtour-summary-bar__dist">' + XQ.icons.pin + ' ' + XQ.escapeHtml(tour.distance) + '</p>' : '') +
+      '</div>' +
+      '<div class="foodtour-budget">' +
+        '<span class="foodtour-budget__label">Chi phí tham khảo</span>' +
+        '<strong class="foodtour-budget__val">' + XQ.escapeHtml(tour.budget) + '</strong>' +
+      '</div>' +
+    '</div>'
+  );
+};
+
+/**
+ * Tạo HTML danh sách các chặng trong lộ trình Food Tour (kèm địa chỉ quán & nút Google Maps).
+ */
+XQ.renderFoodTourTimeline = function (tour, basePath, activePinIndex) {
   basePath = basePath || '';
   if (!tour) return '';
+  var pinCounter = 0;
 
   var stopsHtml = (tour.stops || []).map(function (stop, idx) {
+    var placesHtml = (stop.places || []).map(function (place) {
+      var myPinIdx = pinCounter++;
+      var isSelected = myPinIdx === activePinIndex;
+      var dirUrl = XQ.gmapsSearchUrl(place.mapQuery || place.address);
+      return (
+        '<div class="place-item' + (isSelected ? ' is-active' : '') + '" data-pin-idx="' + myPinIdx + '">' +
+          '<div class="place-item__main">' +
+            '<div class="place-item__name">' + XQ.escapeHtml(place.name) + '</div>' +
+            '<div class="place-item__addr">' + XQ.icons.pin + ' ' + XQ.escapeHtml(place.address) + '</div>' +
+            '<div class="place-item__meta">' +
+              (place.hours ? '<span>Giờ mở: ' + XQ.escapeHtml(place.hours) + '</span>' : '') +
+              (place.highlight ? '<span>· ' + XQ.escapeHtml(place.highlight) + '</span>' : '') +
+            '</div>' +
+          '</div>' +
+          '<div class="place-item__actions">' +
+            '<button type="button" class="btn btn--secondary btn--sm place-pin-btn" data-select-pin="' + myPinIdx + '">' +
+              (isSelected ? 'Đang xem bản đồ' : 'Xem trên bản đồ') +
+            '</button>' +
+            '<a class="btn btn--link place-dir-link" href="' + dirUrl + '" target="_blank" rel="noopener noreferrer">Chỉ đường ↗</a>' +
+          '</div>' +
+        '</div>'
+      );
+    }).join('');
+
     var dishesHtml = (stop.dishes || []).map(function (dishId) {
       var dish = XQ.getDish(dishId);
       if (!dish) return '';
@@ -283,31 +351,20 @@ XQ.renderFoodTour = function (tour, basePath) {
         '<div class="foodtour-stop__card">' +
           '<div class="foodtour-stop__top">' +
             '<span class="foodtour-time">' + XQ.escapeHtml(stop.time) + ' · ' + XQ.escapeHtml(stop.period) + '</span>' +
-            '<span class="region-tag" style="margin-bottom:0">' + XQ.icons.pin + ' ' + XQ.escapeHtml(stop.area) + '</span>' +
+            (stop.leg ? '<span class="foodtour-leg">' + XQ.escapeHtml(stop.leg) + '</span>' : '') +
           '</div>' +
           '<h3 class="foodtour-stop__title">' + XQ.escapeHtml(stop.title) + '</h3>' +
           '<p class="foodtour-stop__note">' + XQ.escapeHtml(stop.note) + '</p>' +
+          '<div class="place-list">' + placesHtml + '</div>' +
+          '<div class="foodtour-dishes-label">Món nên gọi tại chặng này (nhấn để xem cách ăn chuẩn vị):</div>' +
           '<div class="foodtour-dishes">' + dishesHtml + '</div>' +
           (stop.tip
-            ? '<p class="foodtour-stop__tip"><strong>Mẹo nhỏ:</strong> ' + XQ.escapeHtml(stop.tip) + '</p>'
+            ? '<p class="foodtour-stop__tip"><strong>Mẹo địa phương:</strong> ' + XQ.escapeHtml(stop.tip) + '</p>'
             : '') +
         '</div>' +
       '</article>'
     );
   }).join('');
 
-  return (
-    '<div class="foodtour-summary-bar">' +
-      '<div>' +
-        '<span class="foodtour-summary-bar__badge">' + XQ.escapeHtml(tour.badge) + '</span>' +
-        '<h3 class="foodtour-summary-bar__title">' + XQ.escapeHtml(tour.name) + '</h3>' +
-        '<p class="foodtour-summary-bar__desc">' + XQ.escapeHtml(tour.summary) + '</p>' +
-      '</div>' +
-      '<div class="foodtour-budget">' +
-        '<span class="foodtour-budget__label">Chi phí tham khảo</span>' +
-        '<strong class="foodtour-budget__val">' + XQ.escapeHtml(tour.budget) + '</strong>' +
-      '</div>' +
-    '</div>' +
-    '<div class="foodtour-timeline">' + stopsHtml + '</div>'
-  );
+  return '<div class="foodtour-timeline">' + stopsHtml + '</div>';
 };

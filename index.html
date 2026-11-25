@@ -25,9 +25,10 @@
 
       <nav class="main-nav" id="main-nav" aria-label="Điều hướng chính">
         <a href="#trang-chu" class="is-active">Trang chủ</a>
-        <a href="#khu-vuc">Khám phá theo khu vực</a>
-        <a href="#thu-vien-mon">Danh sách món ăn</a>
-        <a href="#van-hoa">Câu chuyện văn hóa</a>
+        <a href="#khu-vuc">Khu vực</a>
+        <a href="#thu-vien-mon">Món ăn</a>
+        <a href="pages/lo-trinh.html" target="_blank" rel="noopener noreferrer">Lộ trình ↗</a>
+        <a href="#van-hoa">Văn hóa</a>
         <a href="#lien-he">Liên hệ</a>
       </nav>
 
@@ -227,22 +228,30 @@
       </div>
     </section>
 
-    <!-- ==================== 5B. LỘ TRÌNH THƯỞNG THỨC 1 NGÀY (FOOD TOUR) ==================== -->
+    <!-- ==================== 5B. THẺ MỜI MỞ TRANG LỘ TRÌNH FOOD TOUR (TAB RIÊNG) ==================== -->
     <section class="section section--ivory" id="food-tour">
       <div class="container">
-        <div class="section-header section-header--split reveal">
-          <div>
-            <span class="section-eyebrow">Gợi ý hành trình ẩm thực</span>
-            <h2 class="section-title">Lộ Trình Thưởng Thức 1 Ngày Tại Quảng Ngãi</h2>
-            <p class="section-lead">
-              Lần đầu đến xứ Quảng chưa biết ăn gì vào buổi nào? Tham khảo ngay lịch trình Food Tour
-              từ sáng đến tối dưới đây — nhấn vào bất kỳ món nào trong lộ trình để xem chi tiết cách ăn chuẩn vị.
+        <div class="foodtour-teaser reveal">
+          <div class="foodtour-teaser__content">
+            <span class="section-eyebrow">Gợi ý lịch trình &amp; Google Maps</span>
+            <h2 class="section-title" style="margin-bottom:0.65rem;">Lộ Trình Thưởng Thức 1 Ngày Tại Quảng Ngãi</h2>
+            <p class="section-lead" style="margin-bottom:1.1rem;">
+              Tách riêng thành một trang bản đồ trực quan để bạn dễ theo dõi: gồm <strong>3 tuyến đi thuận đường</strong>
+              (Nội thành TP. Quảng Ngãi · An Phú – Biển Mỹ Khê – Thu Xà · Đảo Lý Sơn), cập nhật địa chỉ quán ngon thực tế và nút chỉ đường Google Maps từng chặng.
             </p>
+            <div class="foodtour-teaser__pills">
+              <span>📍 Địa chỉ quán thực tế</span>
+              <span>🗺️ Ghim trực tiếp Google Maps</span>
+              <span>🧭 3 tuyến gọn đường</span>
+            </div>
           </div>
-          <div class="foodtour-tabs" id="foodtour-tabs" role="tablist" aria-label="Chọn lộ trình Food Tour"></div>
+          <div class="foodtour-teaser__cta">
+            <a href="pages/lo-trinh.html" target="_blank" rel="noopener noreferrer" class="btn btn--primary">
+              Mở trang Lộ trình &amp; Bản đồ ↗
+            </a>
+            <span class="foodtour-teaser__hint">Mở ở tab mới cho gọn gàng</span>
+          </div>
         </div>
-
-        <div class="foodtour-wrap reveal" id="foodtour-content"></div>
       </div>
     </section>
 
@@ -343,7 +352,7 @@
             <li><a href="pages/khu-vuc.html?id=ly-son">Đảo Lý Sơn</a></li>
             <li><a href="pages/khu-vuc.html?id=tra-bong">Vùng cao Trà Bồng</a></li>
             <li><a href="pages/khu-vuc.html?id=lang-nghe">Làng nghề truyền thống</a></li>
-            <li><a href="#food-tour">Lộ trình Food Tour 1 ngày</a></li>
+            <li><a href="pages/lo-trinh.html" target="_blank" rel="noopener noreferrer">Lộ trình Food Tour &amp; Bản đồ ↗</a></li>
           </ul>
         </div>
 
@@ -381,7 +390,6 @@
   <script src="js/data/regions.js"></script>
   <script src="js/data/dishes.js"></script>
   <script src="js/data/stories.js"></script>
-  <script src="js/data/foodtour.js"></script>
   <script src="js/modules/render.js"></script>
   <script src="js/modules/filter.js"></script>
   <script src="js/modules/modal.js"></script>

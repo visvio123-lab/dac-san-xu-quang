@@ -144,31 +144,6 @@
     // 1.3 Thư viện toàn bộ đặc sản + Bộ lọc
     XQ.Filter.init();
 
-    // 1.3b Lộ trình thưởng thức 1 ngày (Food Tour gợi ý)
-    var ftTabs = document.getElementById('foodtour-tabs');
-    var ftContent = document.getElementById('foodtour-content');
-    if (ftTabs && ftContent && (XQ.foodTours || []).length) {
-      var activeTourId = XQ.foodTours[0].id;
-
-      function renderFoodTourUI(tourId) {
-        activeTourId = tourId;
-        var tour = XQ.foodTours.find(function (t) { return t.id === tourId; }) || XQ.foodTours[0];
-        ftTabs.innerHTML = XQ.foodTours.map(function (t) {
-          var active = t.id === tour.id;
-          return '<button type="button" class="foodtour-tab' + (active ? ' is-active' : '') + '" data-tour-id="' + XQ.escapeHtml(t.id) + '" role="tab" aria-selected="' + active + '">' + XQ.escapeHtml(t.short) + '</button>';
-        }).join('');
-        ftContent.innerHTML = XQ.renderFoodTour(tour, '');
-      }
-
-      renderFoodTourUI(activeTourId);
-
-      ftTabs.addEventListener('click', function (e) {
-        var btn = e.target.closest('[data-tour-id]');
-        if (!btn) return;
-        renderFoodTourUI(btn.getAttribute('data-tour-id'));
-      });
-    }
-
     // 1.4 Góc Văn hóa & Làng nghề
     var storiesGrid = document.getElementById('stories-grid');
     if (storiesGrid) {
@@ -413,6 +388,115 @@
     XQ.Modal.bindGlobalClicks(basePath);
   }
 
+  /* ---------------- 5. TRANG LỘ TRÌNH FOOD TOUR (PAGES/LO-TRINH.HTML) ---------------- */
+  function initFoodTourPage() {
+    var basePath = '../';
+    var tours = XQ.foodTours || [];
+    if (!tours.length) return;
+
+    var tabsEl = document.getElementById('foodtour-tabs');
+    var summaryEl = document.getElementById('foodtour-summary');
+    var timelineEl = document.getElementById('foodtour-timeline-wrap');
+    var fullRouteBtn = document.getElementById('foodtour-full-route-btn');
+    var mapIframe = document.getElementById('foodtour-map-iframe');
+    var mapName = document.getElementById('map-place-name');
+    var mapAddr = document.getElementById('map-place-addr');
+    var mapOpenBtn = document.getElementById('map-open-gmaps');
+    var quickPinsEl = document.getElementById('map-quick-pins');
+
+    var activeTourId = getParam('route') || tours[0].id;
+    var activeTour = tours.find(function (t) { return t.id === activeTourId; }) || tours[0];
+    var flatPlaces = [];
+    var activePinIdx = 0;
+
+    function collectPlaces(tour) {
+      var arr = [];
+      (tour.stops || []).forEach(function (stop, sIdx) {
+        (stop.places || []).forEach(function (place) {
+          arr.push({
+            stopIdx: sIdx + 1,
+            period: stop.period,
+            name: place.name,
+            address: place.address,
+            mapQuery: place.mapQuery || place.address
+          });
+        });
+      });
+      return arr;
+    }
+
+    function selectPin(idx, shouldScrollMap) {
+      if (!flatPlaces.length) return;
+      activePinIdx = Math.max(0, Math.min(idx, flatPlaces.length - 1));
+      var place = flatPlaces[activePinIdx];
+
+      if (mapName) mapName.textContent = place.name;
+      if (mapAddr) mapAddr.textContent = place.address;
+      if (mapIframe) mapIframe.src = XQ.gmapsEmbedUrl(place.mapQuery);
+      if (mapOpenBtn) mapOpenBtn.href = XQ.gmapsSearchUrl(place.mapQuery);
+
+      // Cập nhật trạng thái nút trong timeline & danh sách ghim nhanh
+      document.querySelectorAll('[data-pin-idx]').forEach(function (el) {
+        var isAct = Number(el.getAttribute('data-pin-idx')) === activePinIdx;
+        el.classList.toggle('is-active', isAct);
+        var btn = el.querySelector('.place-pin-btn');
+        if (btn) btn.textContent = isAct ? 'Đang xem bản đồ' : 'Xem trên bản đồ';
+      });
+
+      if (quickPinsEl) {
+        quickPinsEl.innerHTML = flatPlaces.map(function (p, i) {
+          return '<button type="button" class="map-quick-pin' + (i === activePinIdx ? ' is-active' : '') + '" data-select-pin="' + i + '">' +
+            '<span>' + (i + 1) + '.</span> ' + XQ.escapeHtml(p.name) +
+          '</button>';
+        }).join('');
+      }
+
+      if (shouldScrollMap && window.innerWidth <= 1040 && mapIframe) {
+        mapIframe.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+
+    function renderTour(tourId) {
+      activeTour = tours.find(function (t) { return t.id === tourId; }) || tours[0];
+      flatPlaces = collectPlaces(activeTour);
+      activePinIdx = 0;
+
+      if (tabsEl) {
+        tabsEl.innerHTML = tours.map(function (t) {
+          var isAct = t.id === activeTour.id;
+          return '<button type="button" class="foodtour-tab' + (isAct ? ' is-active' : '') + '" data-tour-id="' + XQ.escapeHtml(t.id) + '" role="tab" aria-selected="' + isAct + '">' + XQ.escapeHtml(t.short) + '</button>';
+        }).join('');
+      }
+
+      if (fullRouteBtn) fullRouteBtn.href = XQ.gmapsRouteUrl(activeTour);
+      if (summaryEl) summaryEl.innerHTML = XQ.renderFoodTourSummary(activeTour);
+      if (timelineEl) timelineEl.innerHTML = XQ.renderFoodTourTimeline(activeTour, basePath, 0);
+
+      selectPin(0, false);
+    }
+
+    renderTour(activeTour.id);
+
+    document.addEventListener('click', function (e) {
+      var tabBtn = e.target.closest('[data-tour-id]');
+      if (tabBtn) {
+        var newTourId = tabBtn.getAttribute('data-tour-id');
+        renderTour(newTourId);
+        if (window.history && window.history.replaceState) {
+          window.history.replaceState(null, '', '?route=' + encodeURIComponent(newTourId));
+        }
+        return;
+      }
+
+      var pinBtn = e.target.closest('[data-select-pin]');
+      if (pinBtn) {
+        selectPin(Number(pinBtn.getAttribute('data-select-pin')), true);
+      }
+    });
+
+    XQ.Modal.bindGlobalClicks(basePath);
+  }
+
   /* ---------------- KHỞI CHẠY ---------------- */
   document.addEventListener('DOMContentLoaded', function () {
     var page = document.body.getAttribute('data-page') || 'home';
@@ -424,5 +508,6 @@
     else if (page === 'dish') initDishDetailPage();
     else if (page === 'region') initRegionPage();
     else if (page === 'story') initStoryPage();
+    else if (page === 'foodtour') initFoodTourPage();
   });
 })();
