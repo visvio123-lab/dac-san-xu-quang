@@ -165,6 +165,60 @@ XQ.config = {
     ],
     'banh-thuan': [
       area('Cửa hàng bánh truyền thống', 'Khu vực Chợ Quảng Ngãi, TP. Quảng Ngãi', 'Cho Quang Ngai, Nguyen Nghiem, Quang Ngai, Vietnam')
+    ],
+
+    /* ---------- Bổ sung 16 món mở rộng theo khu vực ---------- */
+    'heo-ky-tra-bong': [
+      area('Quán ẩm thực đồng bào vùng cao Trà Bồng', 'Trung tâm huyện Trà Bồng & Sơn Tây, Quảng Ngãi', 'Tra Bong, Quang Ngai, Vietnam', 'Nên đặt trước nếu đi nhóm đông.')
+    ],
+    'rau-don-xao-toi': [
+      area('Quán cơm & đặc sản vùng cao Trà Bồng – Ba Tơ', 'Huyện Trà Bồng, Ba Tơ, Minh Long, Quảng Ngãi', 'Tra Bong, Quang Ngai, Vietnam')
+    ],
+    'ca-chach-suoi-kho-nghe': [
+      area('Quán ăn đặc sản vùng Sơn Hà – Ba Tơ', 'Huyện Sơn Hà & Ba Tơ, Quảng Ngãi', 'Son Ha, Quang Ngai, Vietnam')
+    ],
+    'mang-rung-xao': [
+      area('Chợ & quán ăn vùng cao Trà Bồng – Sơn Hà', 'Huyện Trà Bồng, Quảng Ngãi', 'Tra Bong, Quang Ngai, Vietnam')
+    ],
+    'ruou-can-tra-bong': [
+      area('Cơ sở đặc sản đồng bào Cor Trà Bồng', 'Huyện Trà Bồng, Quảng Ngãi', 'Tra Bong, Quang Ngai, Vietnam', 'Có thể mua ché nhỏ mang về làm quà.')
+    ],
+    'oc-tuong-ly-son': [
+      shop('Nhà hàng Cơm Hải sản Đại Hằng', 'Đường Bờ Kè Ven Biển, Thôn Tây, huyện đảo Lý Sơn', CANGAY, 'Nha hang Dai Hang, Ly Son, Quang Ngai, Vietnam', 'Hải sản tươi tự chọn, hỏi giá trước khi chế biến.'),
+      shop('Hải sản Thành Lợi', 'Khu vực Bến khách Cầu Cảng, huyện đảo Lý Sơn', CANGAY, 'Hai san Thanh Loi, Ly Son, Quang Ngai, Vietnam')
+    ],
+    'oc-cu-ly-son': [
+      shop('Hải sản Biển Nhớ', 'Thôn Đông, xã An Vĩnh, huyện đảo Lý Sơn', CANGAY, 'Hai san Bien Nho, Ly Son, Quang Ngai, Vietnam'),
+      area('Dãy quán hải sản bờ kè Thôn Tây', 'Đường Bờ Kè, huyện đảo Lý Sơn', 'Ly Son, Quang Ngai, Vietnam')
+    ],
+    'cha-ca-ly-son': [
+      area('Chợ Lý Sơn & Cảng Sa Kỳ', 'Cầu Cảng Lý Sơn hoặc khu vực Cảng Sa Kỳ', 'Cang Sa Ky, Binh Son, Quang Ngai, Vietnam', 'Có bán chả cá hút chân không mang về.')
+    ],
+    'hanh-tim-ly-son': [
+      area('Chợ Lý Sơn & Vườn hành trên đảo', 'Huyện đảo Lý Sơn, Quảng Ngãi', 'Cho Ly Son, Quang Ngai, Vietnam')
+    ],
+    'ca-duc-kho-tieu': [
+      area('Dãy quán hải sản Bãi biển Mỹ Khê', 'Xã Tịnh Khê, TP. Quảng Ngãi', 'Bai bien My Khe, Tinh Khe, Quang Ngai, Vietnam'),
+      area('Khu ẩm thực ven biển Sa Huỳnh', 'Phường Phổ Thạnh, TX. Đức Phổ, Quảng Ngãi', 'Sa Huynh, Duc Pho, Quang Ngai, Vietnam')
+    ],
+    'muc-mot-nang-sa-huynh': [
+      area('Chợ cá & đặc sản biển Sa Huỳnh', 'Phường Phổ Thạnh, TX. Đức Phổ, Quảng Ngãi', 'Sa Huynh, Duc Pho, Quang Ngai, Vietnam'),
+      area('Cửa hàng hải sản đặc sản TP. Quảng Ngãi', 'Trung tâm TP. Quảng Ngãi', 'dac san Quang Ngai city, Vietnam')
+    ],
+    'banh-canh-cha-ca': [
+      area('Quán bánh canh quanh Chợ Quảng Ngãi & Quang Trung', 'Trung tâm TP. Quảng Ngãi', 'banh canh cha ca Quang Ngai, Vietnam', 'Đông khách vào buổi sáng và xế chiều.')
+    ],
+    'muoi-sa-huynh': [
+      area('Cánh đồng muối Sa Huỳnh', 'Phường Phổ Thạnh, TX. Đức Phổ, Quảng Ngãi', 'Canh dong muoi Sa Huynh, Duc Pho, Quang Ngai, Vietnam', 'Nên ghé mùa nắng để ngắm ruộng muối và mua tận nơi.')
+    ],
+    'banh-tet-quang-ngai': [
+      area('Chợ Quảng Ngãi & Làng quê Mộ Đức – Tư Nghĩa', 'Khu vực Chợ Quảng Ngãi hoặc huyện Mộ Đức', 'Cho Quang Ngai, Nguyen Nghiem, Quang Ngai, Vietnam')
+    ],
+    'banh-trang-cuon-thit-heo': [
+      area('Quán bánh tráng cuốn thịt heo TP. Quảng Ngãi', 'Trung tâm TP. Quảng Ngãi', 'banh trang cuon thit heo Quang Ngai, Vietnam')
+    ],
+    'che-xoa-xoa-hat-luu': [
+      area('Khu chè Chợ Quảng Ngãi & Quán chè trung tâm', 'Khu vực Chợ Quảng Ngãi, TP. Quảng Ngãi', 'quan che Quang Ngai city, Vietnam')
     ]
   };
 })();

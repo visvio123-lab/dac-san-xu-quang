@@ -5,12 +5,14 @@
 window.XQ = window.XQ || {};
 
 XQ.Filter = (function () {
+  var PAGE_SIZE = 20;
   var state = {
     category: 'all',
     region: 'all',
     query: '',
     best: false,
-    saved: false
+    saved: false,
+    visibleCount: PAGE_SIZE
   };
 
   var currentResults = [];
@@ -90,8 +92,14 @@ XQ.Filter = (function () {
   function renderStatus() {
     if (!els.statusCount || !els.chips) return;
     var total = (XQ.dishes || []).length;
-    els.statusCount.innerHTML =
-      'Hiển thị <strong>' + currentResults.length + '</strong> / ' + total + ' đặc sản Quảng Ngãi';
+    var shown = Math.min(state.visibleCount, currentResults.length);
+    if (currentResults.length < total) {
+      els.statusCount.innerHTML =
+        'Hiển thị <strong>' + shown + '</strong> / <strong>' + currentResults.length + '</strong> món phù hợp (trong tổng ' + total + ' đặc sản)';
+    } else {
+      els.statusCount.innerHTML =
+        'Đang hiển thị <strong>' + shown + '</strong> / ' + total + ' đặc sản Quảng Ngãi';
+    }
 
     var chips = [];
     if (state.category !== 'all') {
@@ -121,8 +129,38 @@ XQ.Filter = (function () {
     els.chips.innerHTML = chips.join('');
   }
 
-  function renderGrid() {
+  function renderLoadMore() {
+    if (!els.loadMore) return;
+    var totalMatched = currentResults.length;
+    if (totalMatched <= PAGE_SIZE) {
+      els.loadMore.innerHTML = '';
+      return;
+    }
+
+    var remaining = totalMatched - state.visibleCount;
+    if (remaining > 0) {
+      var nextBatch = Math.min(PAGE_SIZE, remaining);
+      els.loadMore.innerHTML =
+        '<div class="load-more-box">' +
+          '<button type="button" class="btn btn--secondary load-more-btn" data-load-more="step">' +
+            'Xem thêm ' + nextBatch + ' món tiếp <span class="load-more-btn__sub">(còn ' + remaining + ' món)</span>' +
+          '</button>' +
+          (remaining > PAGE_SIZE
+            ? '<button type="button" class="btn btn--link load-more-all" data-load-more="all">Hoặc xem toàn bộ ' + totalMatched + ' món</button>'
+            : '') +
+        '</div>';
+    } else {
+      els.loadMore.innerHTML =
+        '<div class="load-more-box">' +
+          '<span class="load-more-done">Đã hiển thị đầy đủ ' + totalMatched + ' đặc sản</span>' +
+          '<button type="button" class="btn btn--link" data-load-more="collapse">Thu gọn về ' + PAGE_SIZE + ' món ↑</button>' +
+        '</div>';
+    }
+  }
+
+  function renderGrid(keepPage) {
     if (!els.grid) return;
+    if (!keepPage) state.visibleCount = PAGE_SIZE;
     currentResults = filterDishes();
 
     if (!currentResults.length) {
@@ -133,11 +171,13 @@ XQ.Filter = (function () {
           '<button type="button" class="btn btn--primary btn--sm" data-clear="all">Xem lại toàn bộ ' + (XQ.dishes || []).length + ' đặc sản</button>' +
         '</div>';
     } else {
-      els.grid.innerHTML = currentResults.map(function (dish) {
+      var visibleItems = currentResults.slice(0, state.visibleCount);
+      els.grid.innerHTML = visibleItems.map(function (dish) {
         return XQ.renderDishCard(dish, { basePath: '' });
       }).join('');
     }
 
+    renderLoadMore();
     renderCategoryTabs();
     syncRegionUI();
     syncQuickUI();
@@ -150,6 +190,7 @@ XQ.Filter = (function () {
 
   function init() {
     els.grid = document.getElementById('dishes-grid');
+    els.loadMore = document.getElementById('dishes-load-more');
     els.tabs = document.getElementById('category-tabs');
     els.regionSelect = document.getElementById('region-filter');
     els.searchInput = document.getElementById('dish-search');
@@ -239,9 +280,30 @@ XQ.Filter = (function () {
       renderGrid();
     });
 
+    // Xem thêm 20 món / Xem toàn bộ / Thu gọn
+    if (els.loadMore) {
+      els.loadMore.addEventListener('click', function (e) {
+        var btn = e.target.closest('[data-load-more]');
+        if (!btn) return;
+        var mode = btn.getAttribute('data-load-more');
+        if (mode === 'step') {
+          state.visibleCount += PAGE_SIZE;
+          renderGrid(true);
+        } else if (mode === 'all') {
+          state.visibleCount = currentResults.length;
+          renderGrid(true);
+        } else if (mode === 'collapse') {
+          state.visibleCount = PAGE_SIZE;
+          renderGrid(true);
+          var lib = document.getElementById('thu-vien-mon');
+          if (lib) lib.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    }
+
     // Khi người dùng lưu / bỏ lưu món: cập nhật lại lưới nếu đang lọc "Đã lưu"
     document.addEventListener('xq:favorites-changed', function () {
-      if (state.saved) renderGrid();
+      if (state.saved) renderGrid(true);
     });
 
     renderGrid();

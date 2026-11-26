@@ -1185,5 +1185,507 @@ XQ.dishes = [
     season: 'Quanh năm, nhiều vào dịp Tết',
     price: 'Giá bình dân',
     tags: ['banh thuan', 'banh trung', 'banh tet']
+  },
+
+  /* ============ BỔ SUNG MỞ RỘNG CHO CÁC KHU VỰC (35 – 50) ============ */
+  {
+    id: 'heo-ky-tra-bong',
+    name: 'Thịt heo ky nướng ống tre',
+    category: 'nui-rung',
+    regions: ['tra-bong'],
+    area: 'Vùng cao Trà Bồng · Sơn Tây',
+    image: 'dishes/heo-ky-tra-bong.jpg',
+    short: 'Thịt heo thả rông của đồng bào Cor ướp tiêu rừng, sả ớt rồi nướng trong ống tre tươi trên than hồng.',
+    origin: 'Ở vùng cao Trà Bồng và Sơn Tây, đồng bào Cor nuôi giống heo ky (heo cỏ) thả rông trên sườn đồi nên thịt săn chắc, da dày giòn và ít mỡ. Trong các dịp lễ hội, cúng bản hay đón khách quý, thịt được ướp lá rừng rồi nhét vào ống tre tươi nướng trên bếp củi để giữ trọn vị ngọt và quyện mùi thơm đặc trưng của tre non.',
+    ingredients: [
+      'Thịt heo ky (heo thả rông vùng cao) thái miếng vừa',
+      'Tiêu rừng, ớt xiêm, sả, tỏi, muối hột',
+      'Lá rừng (lá bép / lá é tùy mùa)',
+      'Ống tre nứa tươi chặt vừa tay'
+    ],
+    steps: [
+      'Thịt heo làm sạch, thái miếng dày, ướp đậm với sả, tỏi, tiêu rừng và muối ớt.',
+      'Cho thịt cùng vài lá thơm vào ống tre tươi, nút chặt miệng ống bằng lá chuối.',
+      'Đặt ống tre lên bếp than củi, xoay đều tay khoảng 40 – 50 phút cho thịt chín mềm.',
+      'Chẻ ống tre bày ra lá chuối, thưởng thức ngay khi còn bốc khói.'
+    ],
+    enjoy: [
+      'Chấm muối ớt xanh giã cùng tiêu rừng hoặc lá é.',
+      'Ăn kèm cơm lam, rau rừng luộc và nhấp chén rượu cần Trà Bồng.'
+    ],
+    where: [
+      'Các quán ẩm thực đồng bào và điểm du lịch cộng đồng ở Trà Bồng, Sơn Tây.',
+      'Chợ phiên vùng cao Trà Bồng.'
+    ],
+    season: 'Quanh năm, ngon nhất mùa lễ hội cuối năm',
+    price: '120.000 – 200.000đ/ống',
+    tags: ['heo ky', 'thit nuong', 'ong tre', 'tra bong', 'cor']
+  },
+  {
+    id: 'rau-don-xao-toi',
+    name: 'Rau dớn rừng xào tỏi / bóp gỏi',
+    category: 'nui-rung',
+    regions: ['tra-bong'],
+    area: 'Vùng cao Trà Bồng · Ba Tơ · Minh Long',
+    image: 'dishes/rau-don-xao-toi.jpg',
+    short: 'Đọt rau dớn non mọc ven suối rừng giòn sần sật, xào tỏi Lý Sơn hoặc bóp gỏi đậu phộng cực bắt vị.',
+    origin: 'Rau dớn là loài dương xỉ rừng mọc hoang ven các con suối mát ở Trà Bồng, Minh Long, Ba Tơ. Bà con hái những đọt non uốn cong buổi sớm mai, đem về rửa sạch rồi xào tỏi hoặc làm gỏi. Vị giòn mát, hơi nhớt nhẹ tự nhiên giúp cân bằng hoàn hảo cho các món nướng núi rừng.',
+    ingredients: [
+      'Đọt rau dớn rừng tươi non',
+      'Tỏi Lý Sơn đập dập',
+      'Đậu phộng rang, chanh, ớt (nếu làm gỏi)',
+      'Nước mắm, dầu phộng nguyên chất'
+    ],
+    steps: [
+      'Nhặt bỏ cuống già, rửa sạch rau dớn nhiều lần với nước suối/nước lạnh.',
+      'Chần sơ rau trong nước sôi rồi vớt ra ngâm nước mát để giữ màu xanh và độ giòn.',
+      'Phi thơm tỏi với dầu phộng, cho rau dớn vào xào nhanh lửa lớn (hoặc trộn gỏi chua ngọt rắc đậu phộng).'
+    ],
+    enjoy: [
+      'Ăn nóng ngay sau khi xào để rau giữ độ giòn sần sật.',
+      'Rất hợp ăn kèm cá niên nướng hoặc thịt heo ky nướng.'
+    ],
+    where: [
+      'Quán cơm và đặc sản núi rừng tại Trà Bồng, Ba Tơ, Minh Long.',
+      'Chợ vùng cao bán rau dớn tươi theo bó vào buổi sáng.'
+    ],
+    season: 'Quanh năm, nhiều và non nhất sau những cơn mưa',
+    price: '40.000 – 70.000đ/đĩa',
+    tags: ['rau don', 'rau rung', 'xao toi', 'tra bong', 'ba to']
+  },
+  {
+    id: 'ca-chach-suoi-kho-nghe',
+    name: 'Cá chạch suối kho nghệ',
+    category: 'nui-rung',
+    regions: ['tra-bong', 'lang-nghe'],
+    area: 'Sơn Hà · Ba Tơ · Trà Bồng',
+    image: 'dishes/ca-chach-suoi-kho-nghe.jpg',
+    short: 'Cá chạch suối thịt béo ngọt, kho riu riu với nghệ tươi, tiêu và ớt hiểm tạo màu vàng ươm đậm đà.',
+    origin: 'Cùng với cá niên, cá chạch suối sống dưới các khe đá đầu nguồn Trà Bồng, Sơn Hà, Ba Tơ là đặc sản dân dã giàu dinh dưỡng. Người Quảng Ngãi ưa nhất cách kho cá chạch với củ nghệ tươi giã nhuyễn và dầu phộng — vừa khử mùi tanh hoàn hảo, vừa dậy mùi thơm ấm nồng rất đưa cơm.',
+    ingredients: [
+      'Cá chạch suối tươi làm sạch nhớt',
+      'Nghệ tươi giã nhuyễn, hành tím, ớt hiểm',
+      'Dầu phộng nguyên chất, nước mắm nhĩ, tiêu sọ'
+    ],
+    steps: [
+      'Chà cá chạch với muối và chanh (hoặc lá tre) cho thật sạch nhớt, để ráo.',
+      'Ướp cá với nghệ tươi, hành tím, nước mắm, tiêu và chút dầu phộng trong 30 phút.',
+      'Kho lửa nhỏ liu riu đến khi nước sánh vàng, thịt cá săn thấm đều gia vị.'
+    ],
+    enjoy: [
+      'Ăn nóng với cơm trắng dẻo và đĩa rau luộc chấm nước kho nghệ.',
+      'Thưởng thức vào những ngày mưa se lạnh miền núi càng thêm ấm bụng.'
+    ],
+    where: [
+      'Quán cơm quê ở Sơn Hà, Ba Tơ, Trà Bồng.',
+      'Chợ phiên miền núi Quảng Ngãi bán cá chạch tươi buổi sáng.'
+    ],
+    season: 'Quanh năm, béo nhất mùa nước xuống',
+    price: '80.000 – 150.000đ/niêu',
+    tags: ['ca chach', 'kho nghe', 'ca suoi', 'son ha', 'ba to']
+  },
+  {
+    id: 'mang-rung-xao',
+    name: 'Măng rừng xào & Canh măng cá suối',
+    category: 'nui-rung',
+    regions: ['tra-bong'],
+    area: 'Vùng cao Trà Bồng · Sơn Hà',
+    image: 'dishes/mang-rung-xao.jpg',
+    short: 'Măng le, măng nứa đầu mùa giòn ngọt tự nhiên, xào lòng gà hoặc nấu canh chua cùng cá suối.',
+    origin: 'Mỗi độ mưa rừng về, những búp măng nứa, măng le nhú lên khắp sườn núi Trà Bồng, Sơn Hà. Măng rừng có vị ngọt thanh pha chút đắng hậu nhẹ, ít xơ hơn măng trồng, trở thành món ăn không thể thiếu trên mâm cơm vùng cao Quảng Ngãi.',
+    ingredients: [
+      'Măng le hoặc măng nứa rừng tươi',
+      'Hành tím, tỏi, lá lốt hoặc rau mùi tàu',
+      'Thịt ba chỉ / lòng gà hoặc cá suối (tùy cách nấu)'
+    ],
+    steps: [
+      'Bóc vỏ măng, thái lát mỏng hoặc tước sợi, luộc xả nước 1–2 lần cho hết vị hăng.',
+      'Xào săn măng với tỏi, thịt hoặc nấu canh chua cùng cá suối và lá giang.',
+      'Nêm vừa miệng, thêm lá lốt/ngò gai trước khi tắt bếp.'
+    ],
+    enjoy: [
+      'Ăn nóng cùng cơm trắng, chấm nước mắm ớt xiêm.',
+      'Măng khô rừng cũng có thể mua về ngâm nấu canh măng ngày Tết.'
+    ],
+    where: [
+      'Quán ăn và chợ địa phương tại Trà Bồng, Sơn Hà.',
+      'Hợp tác xã nông sản miền núi Quảng Ngãi (có măng khô đóng gói).'
+    ],
+    season: 'Măng tươi nhiều vào mùa mưa; măng khô quanh năm',
+    price: '50.000 – 100.000đ/đĩa',
+    tags: ['mang rung', 'mang le', 'tra bong', 'son ha']
+  },
+  {
+    id: 'ruou-can-tra-bong',
+    name: 'Rượu cần đồng bào Cor',
+    category: 'qua-bieu',
+    subgroup: 'Đặc sản núi rừng',
+    regions: ['tra-bong'],
+    area: 'Vùng cao Trà Bồng',
+    image: 'dishes/ruou-can-tra-bong.jpg',
+    short: 'Rượu ủ từ gạo nếp rẫy và men lá rừng trong ché gốm, vị ngọt êm, cay ấm nồng nàn tình đất núi.',
+    origin: 'Trong đời sống tinh thần của người Cor vùng Trà Bồng, ché rượu cần là biểu tượng của sự gắn kết cộng đồng và lòng hiếu khách. Men rượu được làm thủ công từ hàng chục loại rễ, vỏ cây và lá rừng bí truyền, ủ cùng nếp rẫy trong ché sành nhiều tháng trời.',
+    ingredients: [
+      'Gạo nếp rẫy (hoặc sắn, bo bo)',
+      'Men lá rừng truyền thống của người Cor',
+      'Vỏ trấu sạch và ché gốm ủ rượu',
+      'Cần hút làm từ trúc rừng uốn cong'
+    ],
+    steps: [
+      'Nấu chín nếp rẫy, trải nguội rồi trộn đều với men lá rừng giã mịn và vỏ trấu.',
+      'Ủ kín trong ché gốm, bịt miệng bằng lá chuối và bùn đất từ 1 đến 3 tháng.',
+      'Khi uống, mở nắp ché, châm nước suối sạch và cắm cần trúc thưởng thức chung.'
+    ],
+    enjoy: [
+      'Uống chậm bằng cần trúc bên bếp lửa cùng các món nướng vùng cao.',
+      'Phù hợp làm quà biếu đặc sắc hoặc dùng trong dịp sum họp gia đình.'
+    ],
+    where: [
+      'Các bản làng người Cor và cơ sở đặc sản tại huyện Trà Bồng.',
+      'Cửa hàng đặc sản Quảng Ngãi tại trung tâm TP. Quảng Ngãi.'
+    ],
+    season: 'Quanh năm, chuộng nhất dịp lễ Tết',
+    price: '150.000 – 450.000đ/ché',
+    tags: ['ruou can', 'tra bong', 'cor', 'qua bieu']
+  },
+  {
+    id: 'oc-tuong-ly-son',
+    name: 'Ốc tượng Lý Sơn',
+    category: 'hai-san',
+    regions: ['ly-son'],
+    area: 'Đảo Lý Sơn',
+    image: 'dishes/oc-tuong-ly-son.jpg',
+    short: 'Loài ốc biển quý vỏ lớn đặc trưng đảo Lý Sơn, thịt trắng giòn sần sật, hấp sả hoặc thái lát trộn gỏi.',
+    origin: 'Ốc tượng là một trong những hải sản quý hiếm bậc nhất của vùng biển Lý Sơn, thường sống sâu dưới các rạn san hô nên ngư dân phải lặn bắt rất kỳ công. Con ốc to có thể nặng tới gần nửa ký, phần thịt chắc, giòn ngọt và thơm vị biển không đâu sánh bằng.',
+    ingredients: [
+      'Ốc tượng tươi sống đánh bắt quanh đảo Lý Sơn',
+      'Sả cây, gừng, ớt, lá chanh',
+      'Muối tiêu chanh hoặc nước mắm gừng tỏi ớt'
+    ],
+    steps: [
+      'Rửa sạch vỏ ốc, ngâm nước vo gạo vài giờ cho sạch cát.',
+      'Hấp cách thủy cùng sả đập dập và gừng đến khi vừa chín tới.',
+      'Lấy thịt ốc thái lát mỏng (hoặc nướng mỡ hành, nấu cháo ốc tượng).'
+    ],
+    enjoy: [
+      'Chấm lát thịt ốc giòn sần sật vào muối tiêu chanh hoặc mắm gừng.',
+      'Ăn kèm rau răm và bánh tráng nướng giòn.'
+    ],
+    where: [
+      'Các nhà hàng hải sản dọc Bờ Kè Thôn Tây và Cầu Cảng đảo Lý Sơn.'
+    ],
+    season: 'Ngon nhất mùa biển êm (tháng 3 – tháng 8)',
+    price: 'Theo thời giá (hải sản quý của đảo)',
+    tags: ['oc tuong', 'hai san', 'ly son', 'oc']
+  },
+  {
+    id: 'oc-cu-ly-son',
+    name: 'Ốc cừ Lý Sơn',
+    category: 'hai-san',
+    regions: ['ly-son'],
+    area: 'Đảo Lý Sơn',
+    image: 'dishes/oc-cu-ly-son.jpg',
+    short: 'Ốc cừ (ốc mặt trăng) thịt dai ngọt tự nhiên, xào sả ớt hoặc nướng mọi trên than hồng thơm lừng.',
+    origin: 'Ốc cừ sinh sống nhiều trên các bãi đá ngầm quanh đảo Lý Sơn, nổi bật với nắp ốc tròn trắng bóng như “mặt trăng” nhỏ. Món ốc cừ xào sả ớt hay nướng mỡ hành là món ăn đêm quen thuộc của du khách dọc bờ kè biển đảo.',
+    ingredients: [
+      'Ốc cừ tươi sống Lý Sơn',
+      'Sả, ớt, tỏi Lý Sơn băm nhuyễn',
+      'Mỡ hành, đậu phộng rang (nếu nướng)',
+      'Muối ớt xanh hoặc mắm gừng'
+    ],
+    steps: [
+      'Ngâm rửa sạch ốc cừ.',
+      'Xào: phi thơm tỏi sả ớt, cho ốc vào đảo đều lửa lớn, nêm nước mắm đường vừa miệng.',
+      'Nướng: đặt ốc lên vỉ than hồng, khi nắp bung ra thì rưới mỡ hành và đậu phộng.'
+    ],
+    enjoy: [
+      'Dùng tăm khều trọn phần thịt ốc, chấm muối ớt xanh hoặc mắm gừng.',
+      'Nhâm nhi cùng bạn bè bên gió biển buổi tối.'
+    ],
+    where: [
+      'Các quán hải sản bình dân dọc bờ kè Thôn Tây và khu vực Cầu Cảng Lý Sơn.'
+    ],
+    season: 'Quanh năm, nhiều nhất mùa nắng',
+    price: '60.000 – 120.000đ/đĩa',
+    tags: ['oc cu', 'oc mat trang', 'ly son', 'hai san']
+  },
+  {
+    id: 'cha-ca-ly-son',
+    name: 'Chả cá đỏ củ Lý Sơn',
+    category: 'hai-san',
+    regions: ['ly-son', 'an-phu-co-luy'],
+    area: 'Đảo Lý Sơn · Cảng Sa Kỳ',
+    image: 'dishes/cha-ca-ly-son.jpg',
+    short: 'Chả cá làm từ cá đỏ củ tươi nguyên chất quết tay cùng tỏi Lý Sơn, dai ngọt tự nhiên, chiên vàng hoặc hấp.',
+    origin: 'Cá đỏ củ đánh bắt quanh vùng biển Lý Sơn và cửa biển Sa Kỳ có thịt trắng, ngọt thanh và dẻo. Người dân lọc thịt cá ngay khi thuyền cập bến, quết nhuyễn cùng tỏi Lý Sơn, tiêu sọ và nước mắm ngon tạo nên miếng chả cá thơm nức mũi, hoàn toàn không pha bột.',
+    ingredients: [
+      'Thịt cá đỏ củ tươi sống',
+      'Tỏi Lý Sơn, hành tím, tiêu sọ giã dập',
+      'Nước mắm nhĩ, chút đường và dầu ăn'
+    ],
+    steps: [
+      'Rửa sạch cá, nạo lấy phần thịt phi lê.',
+      'Ướp gia vị, tỏi Lý Sơn và tiêu rồi quết (hoặc xay) kỹ cho chả đạt độ dai dẻo.',
+      'Nặn thành bánh tròn dẹt, đem hấp chín hoặc chiên ngập dầu vàng ươm.'
+    ],
+    enjoy: [
+      'Cắt lát ăn nóng chấm tương ớt, cuốn bánh tráng rau sống.',
+      'Dùng làm nhân bánh mì, bún chả cá, bánh canh chả cá hoặc kho tiêu.'
+    ],
+    where: [
+      'Chợ Lý Sơn, khu vực Cảng Sa Kỳ và Chợ Quảng Ngãi.',
+      'Đóng gói hút chân không cấp đông tiện mang về làm quà.'
+    ],
+    season: 'Quanh năm',
+    price: '160.000 – 240.000đ/kg',
+    tags: ['cha ca', 'ca do cu', 'ly son', 'sa ky', 'qua bieu']
+  },
+  {
+    id: 'hanh-tim-ly-son',
+    name: 'Hành tím Lý Sơn',
+    category: 'qua-bieu',
+    subgroup: 'Nông sản & Gia vị',
+    regions: ['ly-son'],
+    area: 'Đảo Lý Sơn',
+    image: 'dishes/hanh-tim-ly-son.jpg',
+    short: 'Hành tím trồng trên cát biển phủ đất núi lửa, củ nhỏ chắc, thơm nồng dịu ngọt – bí quyết của nhiều món xứ Quảng.',
+    origin: 'Song hành cùng tỏi Lý Sơn, hành tím Lý Sơn được trồng luân canh trên chính những thửa ruộng cát trắng đất bazan giữa biển khơi. Củ hành tuy nhỏ nhưng cực kỳ chắc, nhiều tinh dầu, mùi thơm ngào ngạt và không quá cay gắt — là linh hồn của đĩa cơm gà hành muối, bánh bèo hay tô don sông Trà.',
+    ingredients: [
+      'Hành tím Lý Sơn củ nhỏ, vỏ tím hồng bóng đẹp',
+      'Đất bazan núi lửa phủ cát san hô trắng',
+      'Nắng gió tự nhiên của đảo Lý Sơn'
+    ],
+    steps: [
+      'Gieo củ giống trên ruộng cát biển, chăm tưới khoảng 60 – 70 ngày.',
+      'Thu hoạch khi lá ngả vàng, bó chùm phơi nắng gió cho ráo củ.',
+      'Bảo quản nơi khô thoáng để dùng dần quanh năm.'
+    ],
+    enjoy: [
+      'Phi thơm vàng rụm rắc lên bún, mì Quảng, gỏi, bánh bèo.',
+      'Muối chua ngọt ăn kèm cơm gà, thịt kho hoặc bánh chưng ngày Tết.'
+    ],
+    where: [
+      'Chợ và vườn hành trên đảo Lý Sơn.',
+      'Cửa hàng đặc sản tại cảng Sa Kỳ và TP. Quảng Ngãi.'
+    ],
+    season: 'Thu hoạch nhiều vụ trong năm',
+    price: '50.000 – 90.000đ/kg',
+    tags: ['hanh tim', 'ly son', 'gia vi', 'nong san']
+  },
+  {
+    id: 'ca-duc-kho-tieu',
+    name: 'Cá đục nướng / kho tiêu',
+    category: 'mon-chinh',
+    regions: ['an-phu-co-luy', 'lang-nghe'],
+    area: 'Biển Mỹ Khê · Nghĩa An · Sa Huỳnh',
+    image: 'dishes/ca-duc-kho-tieu.jpg',
+    short: 'Cá đục biển thân nhỏ thịt trắng ngọt thanh, nướng than cuốn rau sống chấm mắm nêm hoặc kho tiêu đưa cơm.',
+    origin: 'Dọc các bãi biển Mỹ Khê, Nghĩa An đến Sa Huỳnh (Đức Phổ), cá đục là món quà quen thuộc của biển cả. Thân cá nhỏ dài cỡ ngón tay cái, thịt trắng tinh, ít xương dăm và rất thơm. Người làng biển ưa nhất hai kiểu: nướng mọi trên than hồng ăn cuốn bánh tráng, hoặc kho tiêu ăn cơm nóng.',
+    ingredients: [
+      'Cá đục biển tươi sống đánh bắt gần bờ',
+      'Ớt xiêm, tiêu sọ, nước mắm nhĩ, nghệ tươi',
+      'Bánh tráng, rau sống, dưa leo, mắm nêm (nếu ăn nướng)'
+    ],
+    steps: [
+      'Đánh vảy, làm sạch cá đục, để nguyên con cho ngọt thịt.',
+      'Nướng: ướp sơ muối ớt nghệ rồi nướng trên bếp than hồng đến khi da vàng thơm.',
+      'Kho tiêu: ướp nước mắm, đường, hành tím, tiêu và kho riu riu cho săn thịt.'
+    ],
+    enjoy: [
+      'Cá nướng gỡ thịt cuốn bánh tráng rau sống, chấm mắm nêm tỏi ớt.',
+      'Cá kho tiêu ăn cùng cơm trắng nóng và canh chua.'
+    ],
+    where: [
+      'Các quán hải sản ven biển Mỹ Khê (Tịnh Khê), Nghĩa An (An Phú) và Sa Huỳnh (Đức Phổ).'
+    ],
+    season: 'Quanh năm, ngon nhất mùa hè',
+    price: '80.000 – 140.000đ/đĩa',
+    tags: ['ca duc', 'hai san', 'my khe', 'nghia an', 'sa huynh']
+  },
+  {
+    id: 'muc-mot-nang-sa-huynh',
+    name: 'Mực một nắng Sa Huỳnh',
+    category: 'hai-san',
+    regions: ['an-phu-co-luy', 'ly-son', 'lang-nghe'],
+    area: 'Biển Sa Huỳnh · Đức Phổ · Lý Sơn',
+    image: 'dishes/muc-mot-nang-sa-huynh.jpg',
+    short: 'Mực ống tươi vừa câu lên được xẻ rửa nước biển, phơi đúng một nắng giòn – nướng lên dày thịt, ngọt dẻo.',
+    origin: 'Vùng biển Sa Huỳnh (Đức Phổ) và Lý Sơn có ánh nắng rực rỡ và gió biển khô ráo — điều kiện vàng để làm mực một nắng. Mực ống tươi rói chỉ phơi duy nhất một nắng to để bên ngoài ráo nhẹ nhưng bên trong vẫn giữ trọn độ ngọt tươi của hải sản sống.',
+    ingredients: [
+      'Mực ống hoặc mực lá tươi loại dày mình',
+      'Nước biển sạch để rửa mực',
+      'Tương ớt xứ Quảng hoặc muối ớt xanh chấm kèm'
+    ],
+    steps: [
+      'Xẻ mực tươi, loại bỏ túi mực và rửa lại bằng nước biển cho ngọt.',
+      'Phơi dưới nắng to đúng 1 ngày rồi đóng gói hút chân không cấp đông.',
+      'Khi ăn, nướng trên than hồng lửa vừa (hoặc nướng sa tế) đến khi chín vàng thơm.'
+    ],
+    enjoy: [
+      'Xé hoặc cắt miếng vừa ăn, chấm tương ớt cay nồng hoặc muối ớt xanh.',
+      'Thích hợp nhâm nhi buổi tối ven biển hoặc mua cấp đông làm quà biếu cao cấp.'
+    ],
+    where: [
+      'Chợ cá Sa Huỳnh (Đức Phổ), đảo Lý Sơn và các cửa hàng hải sản TP. Quảng Ngãi.'
+    ],
+    season: 'Quanh năm, ngon nhất mùa nắng',
+    price: '350.000 – 550.000đ/kg',
+    tags: ['muc mot nang', 'muc nuong', 'sa huynh', 'duc pho', 'ly son']
+  },
+  {
+    id: 'banh-canh-cha-ca',
+    name: 'Bánh canh chả cá Quảng Ngãi',
+    category: 'mon-chinh',
+    regions: ['tp-quang-ngai', 'an-phu-co-luy'],
+    area: 'TP. Quảng Ngãi · Xã An Phú',
+    image: 'dishes/banh-canh-cha-ca.jpg',
+    short: 'Sợi bánh canh bột gạo mềm mịn trong nồi nước dùng ngọt thanh xương cá, đầy ắp chả cá đỏ củ chiên và hấp.',
+    origin: 'Nhờ nguồn cá biển tươi dồi dào từ Nghĩa An, Sa Kỳ, bánh canh chả cá trở thành bữa sáng và bữa xế quen thuộc khắp các con hẻm TP. Quảng Ngãi. Nước dùng được ninh từ xương cá biển nên trong vắt, ngọt thanh mà không ngấy, hòa cùng lát chả cá dai thơm mùi tiêu tỏi.',
+    ingredients: [
+      'Sợi bánh canh bột gạo hoặc bột lọc',
+      'Chả cá đỏ củ chiên vàng và chả cá hấp',
+      'Xương cá biển ninh nước dùng, cà chua/điều màu',
+      'Trứng cút, hành lá, ngò rí, hành phi và ớt xiêm'
+    ],
+    steps: [
+      'Ninh xương cá biển với hành nướng lấy nước dùng ngọt thanh, lọc kỹ.',
+      'Cắt lát chả cá chiên và chả cá hấp, thả vào nồi cho dậy mùi thơm.',
+      'Trụng sợi bánh canh nóng, xếp chả cá, trứng cút, chan nước dùng và rắc hành tiêu.'
+    ],
+    enjoy: [
+      'Vắt thêm miếng chanh, cho chút ớt rim hoặc tương ớt cay nồng.',
+      'Có thể gọi thêm bánh mì hoặc quẩy chấm nước dùng nóng.'
+    ],
+    where: [
+      'Các quán bánh canh sáng và chiều quanh Chợ Quảng Ngãi, đường Quang Trung, Hùng Vương.',
+      'Khu vực xã An Phú (Nghĩa An).'
+    ],
+    season: 'Quanh năm',
+    price: '20.000 – 35.000đ/tô',
+    tags: ['banh canh', 'cha ca', 'mon nuoc', 'an sang']
+  },
+  {
+    id: 'muoi-sa-huynh',
+    name: 'Muối Sa Huỳnh',
+    category: 'qua-bieu',
+    subgroup: 'Nông sản & Gia vị',
+    regions: ['lang-nghe'],
+    area: 'Cánh đồng muối Sa Huỳnh · Đức Phổ',
+    image: 'dishes/muoi-sa-huynh.jpg',
+    short: 'Hạt muối biển truyền thống kết tinh trên ruộng nắng Sa Huỳnh, trắng trong, vị mặn dịu không đắng chát.',
+    origin: 'Cánh đồng muối Sa Huỳnh (phường Phổ Thạnh, TX. Đức Phổ) là một trong những vựa muối nổi tiếng và lâu đời nhất miền Trung. Nghề làm muối nơi đây đã được công nhận là Di sản văn hóa phi vật thể quốc gia. Muối Sa Huỳnh giàu khoáng chất tự nhiên, vị mặn đậm đà nhưng hậu dịu thanh.',
+    ingredients: [
+      'Nước biển tinh khiết vùng biển Sa Huỳnh',
+      'Nắng gió miền Trung và kỹ thuật phơi nước chạt truyền thống'
+    ],
+    steps: [
+      'Dẫn nước biển qua các ô phơi đất nện để nâng độ mặn thành nước chạt.',
+      'Đưa nước chạt vào ô kết tinh phơi nắng gắt cho hạt muối kết thành tinh thể trắng.',
+      'Cào gom muối thành đống cao cho ráo nước chát trước khi đóng gói.'
+    ],
+    enjoy: [
+      'Dùng làm gia vị nấu nướng hằng ngày, ướp cá biển, làm muối ớt xanh chấm hải sản.',
+      'Có nhiều dòng sản phẩm quà biếu như muối hoa (fleur de sel), muối hầm, muối tre.'
+    ],
+    where: [
+      'Làng muối Sa Huỳnh (Phổ Thạnh, TX. Đức Phổ).',
+      'Các cửa hàng đặc sản OCOP Quảng Ngãi.'
+    ],
+    season: 'Vụ muối chính từ tháng 3 đến tháng 8 âm lịch',
+    price: '20.000 – 80.000đ/gói tùy loại',
+    tags: ['muoi', 'sa huynh', 'duc pho', 'gia vi', 'ocop']
+  },
+  {
+    id: 'banh-tet-quang-ngai',
+    name: 'Bánh tét Quảng Ngãi',
+    category: 'qua-bieu',
+    subgroup: 'Bánh kẹo truyền thống',
+    regions: ['lang-nghe', 'tp-quang-ngai'],
+    area: 'Làng quê Mộ Đức · Tư Nghĩa · Quảng Ngãi',
+    image: 'dishes/banh-tet-quang-ngai.jpg',
+    short: 'Đòn bánh tét nếp dẻo thơm gói lá chuối, nhân đậu xanh thịt ba chỉ hoặc nhân chuối ngọt bùi đậm vị Tết quê.',
+    origin: 'Nếu bánh chưng là hồn Tết phương Bắc thì đòn bánh tét buộc lạt tre là biểu tượng sum vầy không thể thiếu trên bàn thờ gia tiên người Quảng Ngãi. Nếp ngon được ngâm kỹ, gói chặt tay cùng nhân đậu xanh thịt ba chỉ ướp tiêu (hoặc chuối sứ chín cây) rồi nấu củi suốt đêm giao thừa.',
+    ingredients: [
+      'Gạo nếp dẻo thơm Quảng Ngãi',
+      'Đậu xanh đãi vỏ, thịt ba chỉ ướp tiêu hành (hoặc chuối sứ chín)',
+      'Lá chuối tươi và dây lạt tre chẻ mỏng'
+    ],
+    steps: [
+      'Ngâm nếp, xóc chút muối; nấu đậu xanh nhuyễn và ướp thịt ba chỉ đậm vị tiêu.',
+      'Trải lá chuối, dàn nếp, đặt nhân giữa rồi cuộn tròn, buộc lạt thật chặt tay.',
+      'Luộc bếp củi liên tục 8 – 10 tiếng, vớt ra rửa nước lạnh và ép ráo.'
+    ],
+    enjoy: [
+      'Cắt khoanh bằng chính sợi lạt buộc bánh, ăn kèm dưa món, củ kiệu muối chua.',
+      'Bánh để vài ngày có thể chiên vàng giòn rụm chấm nước tương hoặc đường.'
+    ],
+    where: [
+      'Các lò bánh truyền thống tại Mộ Đức, Tư Nghĩa và Chợ Quảng Ngãi.'
+    ],
+    season: 'Quanh năm (ngày rằm, giỗ), rộn ràng nhất dịp Tết Nguyên Đán',
+    price: '60.000 – 120.000đ/đòn',
+    tags: ['banh tet', 'banh tet chuoi', 'tet', 'mo duc', 'tu nghia']
+  },
+  {
+    id: 'banh-trang-cuon-thit-heo',
+    name: 'Bánh tráng cuốn thịt heo chấm mắm nêm',
+    category: 'mon-chinh',
+    regions: ['tp-quang-ngai', 'lang-nghe'],
+    area: 'TP. Quảng Ngãi · Mộ Đức',
+    image: 'dishes/banh-trang-cuon-thit-heo.jpg',
+    short: 'Thịt heo ba chỉ luộc thái lát mỏng, cuốn bánh tráng gạo mềm cùng rau vườn xanh mướt, chấm mắm nêm đậm đà.',
+    origin: 'Bánh tráng gạo mỏng dẻo của các làng nghề Quảng Ngãi khi kết hợp với thịt heo ba chỉ luộc hai đầu da, dĩa rau thơm đủ vị và chén mắm nêm cá cơm pha thơm tỏi ớt tạo nên món ăn thanh mát, cực kỳ được ưa chuộng trong những bữa cơm họp mặt gia đình và bạn bè.',
+    ingredients: [
+      'Thịt heo ba chỉ hoặc chân giò luộc chín tới',
+      'Bánh tráng gạo mỏng Quảng Ngãi và bánh ướt',
+      'Rau sống: xà lách, tía tô, diếp cá, húng lủi, dưa leo, chuối chát, khế chua',
+      'Mắm nêm cá cơm pha thơm băm, tỏi Lý Sơn, ớt xiêm, đường'
+    ],
+    steps: [
+      'Luộc thịt heo với hành tím và chút muối cho ngọt, vớt ra ngâm nước nguội rồi thái lát mỏng.',
+      'Rửa sạch các loại rau vườn, thái lát dưa leo, chuối chát, khế chua.',
+      'Pha chén mắm nêm sệt thơm mùi dứa băm và tỏi ớt.'
+    ],
+    enjoy: [
+      'Nhúng nhẹ bánh tráng cho mềm, xếp rau, bánh ướt và thịt heo rồi cuốn chặt tay.',
+      'Chấm ngập chén mắm nêm đậm vị, cắn thêm lát ớt xiêm xanh.'
+    ],
+    where: [
+      'Các quán ăn gia đình và quán đặc sản miền Trung tại TP. Quảng Ngãi, Mộ Đức.'
+    ],
+    season: 'Quanh năm',
+    price: '50.000 – 90.000đ/phần',
+    tags: ['banh trang cuon', 'thit heo', 'mam nem', 'cuon']
+  },
+  {
+    id: 'che-xoa-xoa-hat-luu',
+    name: 'Chè xoa xoa hạt lựu & Chè đậu ván',
+    category: 'an-vat',
+    regions: ['tp-quang-ngai'],
+    area: 'TP. Quảng Ngãi',
+    image: 'dishes/che-xoa-xoa-hat-luu.jpg',
+    short: 'Ly chè giải nhiệt trứ danh chiều hè: thạch xu xoa mát giòn, hạt lựu bột năng, đậu xanh đánh và nước cốt dừa béo thơm.',
+    origin: 'Ở Quảng Ngãi, món chè chiều ở các khu chợ và vỉa hè là ký ức tuổi thơ khó phai. Từ thạch xu xoa rong biển kết hợp thêm hạt lựu dẻo giòn, thạch đen, đậu xanh đánh mịn và nước cốt dừa béo ngậy — hay chén chè đậu ván nấu đường phổi vàng sóng sánh — tất cả làm dịu đi cái nắng gió miền Trung.',
+    ingredients: [
+      'Thạch xu xoa nấu từ rong câu tự nhiên',
+      'Hạt lựu làm từ củ năng áo bột năng, thạch đen (sương sáo)',
+      'Đậu xanh đánh nhuyễn hoặc đậu ván nấu đường phổi',
+      'Nước cốt dừa béo thơm, nước đường gừng và đá bào'
+    ],
+    steps: [
+      'Nấu thạch xu xoa để đông cắt miếng nhỏ; luộc hạt lựu bột năng chín trong.',
+      'Nấu đậu xanh tán mịn và thắng nước cốt dừa béo nhẹ với lá dứa.',
+      'Xếp lần lượt các loại thạch, đậu, chan nước đường và cốt dừa, thêm đá bào.'
+    ],
+    enjoy: [
+      'Trộn đều đá bào với nước cốt dừa để cảm nhận đủ vị giòn – bùi – béo – mát.',
+      'Thưởng thức vào xế trưa hoặc buổi chiều nóng bức.'
+    ],
+    where: [
+      'Khu ẩm thực Chợ Quảng Ngãi và các quán chè vỉa hè trung tâm TP. Quảng Ngãi.'
+    ],
+    season: 'Quanh năm, đắt khách nhất mùa hè',
+    price: '12.000 – 20.000đ/ly',
+    tags: ['che', 'xoa xoa', 'hat luu', 'dau van', 'giai nhiet', 'an vat']
   }
 ];
