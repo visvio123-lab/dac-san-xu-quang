@@ -76,6 +76,9 @@
       });
     });
 
+    // Gợi ý quán: bật / tắt bản đồ nhúng Google Maps trong từng thẻ quán
+    XQ.bindShopMaps();
+
     // Hiệu ứng xuất hiện mượt khi cuộn trang
     if ('IntersectionObserver' in window) {
       var observer = new IntersectionObserver(function (entries) {
@@ -95,6 +98,90 @@
         el.classList.add('is-visible');
       });
     }
+  }
+
+  /* ---------------- FORM ĐÓNG GÓP QUÁN NGON ---------------- */
+  function initContributeForm() {
+    var form = document.getElementById('contribute-form');
+    if (!form) return;
+
+    var cfg = XQ.config || {};
+    var regionSel = document.getElementById('contrib-region');
+    var msg = document.getElementById('contribute-msg');
+    var emailBtn = document.getElementById('contrib-email-btn');
+
+    if (regionSel) {
+      regionSel.innerHTML = '<option value="">Chọn khu vực (không bắt buộc)</option>' +
+        (XQ.regions || []).map(function (r) {
+          return '<option value="' + XQ.escapeHtml(r.name) + '">' + XQ.escapeHtml(r.name) + '</option>';
+        }).join('');
+    }
+    if (emailBtn && !cfg.email) emailBtn.hidden = true;
+
+    function val(id) {
+      var el = document.getElementById(id);
+      return el ? el.value.trim() : '';
+    }
+
+    function setMsg(text, type) {
+      if (!msg) return;
+      msg.textContent = text;
+      msg.className = 'contribute-msg' + (type ? ' is-' + type : '');
+    }
+
+    function buildText(d) {
+      return [
+        'ĐÓNG GÓP QUÁN NGON – Đặc Sản Xứ Quảng',
+        'Món đặc sản: ' + d.dish,
+        'Tên quán: ' + d.place,
+        'Địa chỉ: ' + d.address,
+        d.region ? 'Khu vực: ' + d.region : '',
+        d.note ? 'Cảm nhận: ' + d.note : '',
+        d.sender ? 'Người gửi: ' + d.sender : ''
+      ].filter(Boolean).join('\n');
+    }
+
+    function send(channel) {
+      var d = {
+        dish: val('contrib-dish'),
+        place: val('contrib-place'),
+        address: val('contrib-address'),
+        region: val('contrib-region'),
+        note: val('contrib-note'),
+        sender: val('contrib-sender')
+      };
+
+      var missing = [['contrib-dish', d.dish], ['contrib-place', d.place], ['contrib-address', d.address]]
+        .filter(function (f) { return !f[1]; });
+      if (missing.length) {
+        setMsg('Vui lòng điền đủ: món đặc sản, tên quán và địa chỉ.', 'error');
+        var firstEl = document.getElementById(missing[0][0]);
+        if (firstEl) firstEl.focus();
+        return;
+      }
+
+      var text = buildText(d);
+      if (channel === 'email' && cfg.email) {
+        window.location.href = 'mailto:' + cfg.email + '?subject=' +
+          encodeURIComponent('Đóng góp quán ngon: ' + d.place) + '&body=' + encodeURIComponent(text);
+        setMsg('Đang mở ứng dụng email của bạn. Cảm ơn bạn đã đóng góp!', 'success');
+        return;
+      }
+
+      XQ.copyText(text).then(function (ok) {
+        window.open('https://zalo.me/' + (cfg.zalo || '0385940317'), '_blank', 'noopener');
+        setMsg(ok
+          ? 'Đã sao chép nội dung. Hãy dán (giữ chạm / Ctrl+V) vào khung chat Zalo vừa mở để gửi. Cảm ơn bạn!'
+          : 'Đã mở Zalo. Vui lòng chép thông tin quán vào tin nhắn. Cảm ơn bạn!', 'success');
+        form.reset();
+      });
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      send('zalo');
+    });
+    if (emailBtn) emailBtn.addEventListener('click', function () { send('email'); });
   }
 
   /* ---------------- 1. TRANG CHỦ (INDEX.HTML) ---------------- */
@@ -154,6 +241,7 @@
 
     // 1.5 Gắn sự kiện mở Modal chi tiết món
     XQ.Modal.bindGlobalClicks('');
+    initContributeForm();
 
     // 1.6 Xử lý tham số URL (nếu điều hướng từ trang phụ về)
     var qParam = getParam('q');
@@ -188,7 +276,8 @@
     if (bannerMeta) {
       bannerMeta.innerHTML =
         '<span class="badge badge--category">' + XQ.icons.pin + ' ' + XQ.escapeHtml(dish.area) + '</span> ' +
-        (dish.bestseller ? '<span class="badge badge--bestseller">' + XQ.icons.star + ' Best-seller</span>' : '');
+        (dish.bestseller ? '<span class="badge badge--bestseller">' + XQ.icons.star + ' Best-seller</span>' : '') +
+        ' ' + XQ.favButton(dish.id, 'pill');
     }
 
     var mainEl = document.getElementById('dish-detail-main');
@@ -503,6 +592,7 @@
     var basePath = page === 'home' ? '' : '../';
 
     initSharedUI(basePath);
+    if (XQ.Favorites) XQ.Favorites.init(basePath);
 
     if (page === 'home') initHomePage();
     else if (page === 'dish') initDishDetailPage();

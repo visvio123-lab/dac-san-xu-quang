@@ -201,3 +201,63 @@
     padding: 1.1rem;
   }
 }
+
+/* Tối ưu thao tác cảm ứng trên điện thoại */
+@media (max-width: 960px) {
+  .contribute-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .btn,
+  .cat-tab,
+  .quick-chip,
+  .region-pill,
+  .foodtour-tab {
+    min-height: 44px;
+  }
+
+  .search-box,
+  .region-select-wrap {
+    flex: 1 1 100%;
+    max-width: none;
+  }
+
+  .region-select {
+    flex: 1;
+  }
+
+  .category-tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 0.45rem;
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .cat-tab {
+    flex-shrink: 0;
+  }
+
+  .shop-card__actions {
+    width: 100%;
+  }
+
+  .shop-card__actions .btn {
+    flex: 1;
+  }
+
+  .fav-btn--card {
+    width: 44px;
+    height: 44px;
+  }
+
+  .form-actions .btn {
+    flex: 1;
+  }
+
+  .back-to-top {
+    bottom: 5rem;
+  }
+}

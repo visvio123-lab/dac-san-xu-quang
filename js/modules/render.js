@@ -18,6 +18,27 @@ XQ.icons = {
 };
 
 /**
+ * Biểu tượng trái tim + nút lưu món yêu thích.
+ */
+XQ.icons.heart = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8Z"/></svg>';
+
+/**
+ * variant: 'card' (chỉ icon), 'modal' (icon, nằm trên ảnh modal), 'pill' (icon + chữ, dùng ở trang chi tiết).
+ */
+XQ.favButton = function (dishId, variant) {
+  var on = Boolean(XQ.Favorites && XQ.Favorites.has(dishId));
+  var dish = XQ.getDish(dishId);
+  var label = (on ? 'Bỏ lưu món ' : 'Lưu món ') + (dish ? dish.name : '');
+  return (
+    '<button type="button" class="fav-btn fav-btn--' + (variant || 'card') + (on ? ' is-active' : '') + '"' +
+      ' data-fav-toggle="' + XQ.escapeHtml(dishId) + '" aria-pressed="' + on + '" aria-label="' + XQ.escapeHtml(label) + '" title="Lưu vào sổ tay món muốn thử">' +
+      XQ.icons.heart +
+      (variant === 'pill' ? '<span class="fav-btn__text">' + (on ? 'Đã lưu' : 'Lưu món') + '</span>' : '') +
+    '</button>'
+  );
+};
+
+/**
  * Chuẩn hóa chuỗi tiếng Việt về không dấu, chữ thường để tìm kiếm thông minh.
  */
 XQ.normalize = function (str) {
@@ -107,9 +128,10 @@ XQ.renderDishCard = function (dish, opts) {
     '<article class="dish-card' + (isFeatured ? ' dish-card--featured' : '') + '" data-dish-id="' + XQ.escapeHtml(dish.id) + '" tabindex="0" role="button" aria-label="Xem chi tiết món ' + XQ.escapeHtml(dish.name) + '">' +
       '<div class="dish-card__media">' +
         badgesHtml +
+        XQ.favButton(dish.id, 'card') +
         '<img src="' + XQ.escapeHtml(XQ.imgPath(dish.image, basePath)) + '"' +
           ' alt="' + XQ.escapeHtml(dish.name) + ' – đặc sản Quảng Ngãi"' +
-          ' loading="lazy"' +
+          ' loading="lazy" decoding="async"' +
           ' data-fallback-title="' + XQ.escapeHtml(dish.name) + '"' +
           ' data-fallback-sub="' + XQ.escapeHtml(dish.area) + '"' +
           ' data-fallback-icon="' + XQ.escapeHtml(catIcon) + '"' +
@@ -138,7 +160,7 @@ XQ.renderRegionCard = function (region, dishCount, isSelected, basePath) {
     '<article class="region-card' + (isSelected ? ' is-selected' : '') + '" data-region-card="' + XQ.escapeHtml(region.id) + '" tabindex="0" role="button" aria-label="Lọc món đặc sản khu vực ' + XQ.escapeHtml(region.name) + '">' +
       '<img class="region-card__img" src="' + XQ.escapeHtml(XQ.imgPath(region.image, basePath)) + '"' +
         ' alt="' + XQ.escapeHtml(region.name) + '"' +
-        ' loading="lazy"' +
+        ' loading="lazy" decoding="async"' +
         ' data-fallback-title="' + XQ.escapeHtml(region.name) + '"' +
         ' data-fallback-sub="Vùng ẩm thực Quảng Ngãi"' +
         ' data-fallback-icon="mountain"' +
@@ -168,7 +190,7 @@ XQ.renderStoryCard = function (story, basePath) {
       '<a href="' + href + '" class="story-card__media">' +
         '<img src="' + XQ.escapeHtml(XQ.imgPath(story.image, basePath)) + '"' +
           ' alt="' + XQ.escapeHtml(story.title) + '"' +
-          ' loading="lazy"' +
+          ' loading="lazy" decoding="async"' +
           ' data-fallback-title="' + XQ.escapeHtml(story.title) + '"' +
           ' data-fallback-sub="' + XQ.escapeHtml(story.category) + '"' +
           ' data-fallback-icon="book"' +
@@ -208,6 +230,8 @@ XQ.renderDishDetailSections = function (dish) {
     return '<li>' + XQ.escapeHtml(place) + '</li>';
   }).join('');
 
+  var shopsHtml = XQ.renderShopList(dish);
+
   return (
     '<div class="dish-quick-facts">' +
       '<div><span class="quick-fact__label">Nhóm món</span><span class="quick-fact__val">' + XQ.escapeHtml(cat ? cat.name : '') + (dish.subgroup ? ' · ' + XQ.escapeHtml(dish.subgroup) : '') + '</span></div>' +
@@ -239,8 +263,84 @@ XQ.renderDishDetailSections = function (dish) {
     '<section class="dish-section">' +
       '<h3 class="dish-section__heading"><span class="dish-section__num">5</span> Gợi ý khu vực thưởng thức &amp; mua về</h3>' +
       '<ul class="dish-list">' + whereHtml + '</ul>' +
+    '</section>' +
+
+    '<section class="dish-section">' +
+      '<h3 class="dish-section__heading"><span class="dish-section__num">6</span> Quán ngon gợi ý &amp; Chỉ đường</h3>' +
+      shopsHtml +
     '</section>'
   );
+};
+
+/**
+ * Đường dẫn chỉ đường Google Maps tới 1 địa điểm.
+ */
+XQ.gmapsDirUrl = function (query) {
+  return 'https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent(query || 'Quang Ngai, Vietnam');
+};
+
+/**
+ * Danh sách quán gợi ý của 1 món (kèm nút bản đồ nhúng & chỉ đường).
+ */
+XQ.renderShopList = function (dish) {
+  var shops = (XQ.shops && XQ.shops[dish.id]) || [];
+  if (!shops.length) {
+    return '<p class="shop-note">Chưa có gợi ý quán cụ thể cho món này. Bạn có thể ' +
+      '<a href="' + XQ.gmapsSearchUrl(dish.name + ' Quang Ngai') + '" target="_blank" rel="noopener noreferrer">tìm trên Google Maps ↗</a>.</p>';
+  }
+
+  var cards = shops.map(function (s) {
+    var isArea = s.kind === 'area';
+    var metaParts = [];
+    if (s.hours) metaParts.push('Giờ bán: ' + s.hours);
+    metaParts.push('Giá tham khảo: ' + (dish.price || 'tùy quán'));
+    return (
+      '<div class="shop-card' + (isArea ? ' shop-card--area' : '') + '">' +
+        '<div class="shop-card__main">' +
+          '<div class="shop-card__name">' + XQ.escapeHtml(s.name) +
+            (isArea ? ' <span class="shop-card__tag">Khu vực gợi ý</span>' : '') +
+          '</div>' +
+          '<div class="shop-card__addr">' + XQ.icons.pin + ' ' + XQ.escapeHtml(s.address) + '</div>' +
+          (isArea ? '' : '<div class="shop-card__meta">' + XQ.escapeHtml(metaParts.join(' · ')) + '</div>') +
+          (s.note ? '<div class="shop-card__note">' + XQ.escapeHtml(s.note) + '</div>' : '') +
+        '</div>' +
+        '<div class="shop-card__actions">' +
+          '<button type="button" class="btn btn--secondary btn--sm" data-toggle-map="' + XQ.escapeHtml(s.mapQuery) + '">Xem bản đồ</button>' +
+          '<a class="btn btn--primary btn--sm" target="_blank" rel="noopener noreferrer" href="' +
+            (isArea ? XQ.gmapsSearchUrl(s.mapQuery) : XQ.gmapsDirUrl(s.mapQuery)) + '">' +
+            (isArea ? 'Tìm trên Maps ↗' : 'Chỉ đường ↗') + '</a>' +
+        '</div>' +
+        '<div class="shop-card__map" hidden></div>' +
+      '</div>'
+    );
+  }).join('');
+
+  return '<div class="shop-list">' + cards + '</div>' +
+    '<p class="shop-note">Giờ bán và giá chỉ mang tính tham khảo – nên gọi hỏi trước khi đến. ' +
+    'Bạn biết quán ngon khác? <a href="' + (document.body.getAttribute('data-page') === 'home' ? '' : '../index.html') + '#dong-gop">Gửi đóng góp</a>.</p>';
+};
+
+/**
+ * Bật/tắt bản đồ Google Maps nhúng ngay trong thẻ quán (chỉ tải khi người dùng bấm).
+ */
+XQ.bindShopMaps = function () {
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest('[data-toggle-map]');
+    if (!btn) return;
+    var card = btn.closest('.shop-card');
+    var box = card && card.querySelector('.shop-card__map');
+    if (!box) return;
+    if (box.hidden) {
+      box.innerHTML = '<iframe title="Bản đồ Google Maps" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen src="' +
+        XQ.escapeHtml(XQ.gmapsEmbedUrl(btn.getAttribute('data-toggle-map'))) + '"></iframe>';
+      box.hidden = false;
+      btn.textContent = 'Ẩn bản đồ';
+    } else {
+      box.hidden = true;
+      box.innerHTML = '';
+      btn.textContent = 'Xem bản đồ';
+    }
+  });
 };
 
 /**
@@ -329,7 +429,7 @@ XQ.renderFoodTourTimeline = function (tour, basePath, activePinIndex) {
           '<span class="foodtour-dish-pill__thumb">' +
             '<img src="' + XQ.escapeHtml(XQ.imgPath(dish.image, basePath)) + '"' +
               ' alt="' + XQ.escapeHtml(dish.name) + '"' +
-              ' loading="lazy"' +
+              ' loading="lazy" decoding="async"' +
               ' data-fallback-title=""' +
               ' data-fallback-sub=""' +
               ' data-fallback-icon="' + XQ.escapeHtml(iconKey) + '"' +

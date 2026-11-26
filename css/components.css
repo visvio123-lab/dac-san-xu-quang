@@ -1746,3 +1746,594 @@
   color: var(--color-brick-dark);
   font-weight: 600;
 }
+
+/* ---------------- QUÁN NGON GỢI Ý TRONG TỪNG MÓN ---------------- */
+.shop-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.shop-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 1rem 1.15rem;
+  border-radius: var(--radius-sm);
+  background-color: #f4ead9;
+  border: 1px solid rgba(139, 90, 60, 0.25);
+  border-left: 4px solid var(--color-brick);
+}
+
+.shop-card--area {
+  background-color: var(--color-cream);
+  border-left-color: var(--color-earth-light);
+}
+
+.shop-card__main {
+  flex: 1;
+  min-width: 220px;
+}
+
+.shop-card__name {
+  font-family: var(--font-serif);
+  font-size: 1.04rem;
+  font-weight: 700;
+  color: var(--color-dark);
+  margin-bottom: 0.2rem;
+}
+
+.shop-card__tag {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 0.35rem;
+  padding: 0.12rem 0.55rem;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-gold-soft);
+  color: var(--color-earth);
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+.shop-card__addr {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.35rem;
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--color-dark-soft);
+}
+
+.shop-card__addr svg {
+  width: 14px;
+  height: 14px;
+  color: var(--color-brick);
+  flex-shrink: 0;
+  margin-top: 0.22rem;
+}
+
+.shop-card__meta {
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  margin-top: 0.2rem;
+}
+
+.shop-card__note {
+  font-size: 0.82rem;
+  color: var(--color-dark-soft);
+  margin-top: 0.3rem;
+}
+
+.shop-card__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.shop-card__map {
+  flex-basis: 100%;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  aspect-ratio: 16 / 9;
+  background-color: var(--color-cream-deep);
+}
+
+.shop-card__map[hidden] {
+  display: none;
+}
+
+.shop-card__map iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+.shop-note {
+  margin-top: 0.85rem;
+  font-size: 0.82rem;
+  color: var(--color-muted);
+}
+
+.shop-note a {
+  color: var(--color-brick);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ---------------- NÚT TIM LƯU MÓN & SỔ TAY ---------------- */
+.fav-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  color: var(--color-brick);
+  background-color: rgba(253, 251, 247, 0.94);
+  border: 1px solid rgba(44, 29, 20, 0.12);
+  transition: transform var(--transition-fast), background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.fav-btn svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.fav-btn:hover {
+  transform: scale(1.08);
+}
+
+.fav-btn.is-active {
+  background-color: var(--color-brick);
+  border-color: var(--color-brick);
+  color: var(--color-ivory);
+}
+
+.fav-btn.is-active svg {
+  fill: currentColor;
+}
+
+.fav-btn--card {
+  position: absolute;
+  right: 0.75rem;
+  bottom: 0.75rem;
+  z-index: 3;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  box-shadow: var(--shadow-sm);
+}
+
+.fav-btn--modal {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 4;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  box-shadow: var(--shadow-sm);
+}
+
+.fav-btn--pill {
+  padding: 0.38rem 0.95rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.8rem;
+  font-weight: 700;
+  vertical-align: middle;
+}
+
+.fav-btn--pill svg {
+  width: 16px;
+  height: 16px;
+}
+
+.fav-header-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--border-strong);
+  background-color: var(--color-ivory);
+  color: var(--color-brick);
+  transition: background-color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.fav-header-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.fav-header-btn:hover {
+  border-color: var(--color-brick);
+  background-color: var(--color-brick-soft);
+}
+
+.fav-header-btn__count {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-brick);
+  color: var(--color-ivory);
+  font-size: 0.7rem;
+  font-weight: 700;
+  line-height: 20px;
+  text-align: center;
+}
+
+.fav-header-btn__count.is-empty {
+  background-color: var(--color-muted);
+}
+
+.fav-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 700;
+  background-color: rgba(24, 15, 10, 0.55);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-base), visibility var(--transition-base);
+}
+
+.fav-backdrop.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.fav-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 710;
+  width: min(420px, 100%);
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-ivory);
+  box-shadow: var(--shadow-lg);
+  transform: translateX(100%);
+  visibility: hidden;
+  transition: transform var(--transition-base), visibility var(--transition-base);
+}
+
+.fav-drawer.is-open {
+  transform: translateX(0);
+  visibility: visible;
+}
+
+.fav-drawer__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 1.35rem;
+  background: linear-gradient(135deg, #352116 0%, #2c1d14 100%);
+  color: var(--color-ivory);
+}
+
+.fav-drawer__eyebrow {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #f4c77b;
+}
+
+.fav-drawer__title {
+  color: var(--color-ivory);
+  font-size: 1.4rem;
+}
+
+.fav-drawer__count {
+  font-size: 0.84rem;
+  color: rgba(247, 241, 229, 0.8);
+}
+
+.fav-drawer__close {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 1.6rem;
+  line-height: 1;
+  color: var(--color-ivory);
+  background-color: rgba(253, 251, 247, 0.14);
+}
+
+.fav-drawer__close:hover {
+  background-color: var(--color-brick);
+}
+
+.fav-drawer__body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem 1.15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.fav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-cream);
+  border: 1px solid var(--border-subtle);
+}
+
+.fav-item__open {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-align: left;
+  min-width: 0;
+}
+
+.fav-item__thumb {
+  width: 64px;
+  height: 52px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  flex-shrink: 0;
+  background-color: var(--color-cream-deep);
+}
+
+.fav-item__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.fav-item__thumb .media-fallback {
+  padding: 0;
+}
+
+.fav-item__thumb .media-fallback::before,
+.fav-item__thumb .media-fallback__title,
+.fav-item__thumb .media-fallback__sub {
+  display: none;
+}
+
+.fav-item__thumb .media-fallback__icon {
+  width: 30px;
+  height: 30px;
+  margin: 0;
+}
+
+.fav-item__info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.fav-item__name {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 0.98rem;
+  color: var(--color-dark);
+}
+
+.fav-item__area {
+  font-size: 0.76rem;
+  color: var(--color-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fav-item__remove {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 1.4rem;
+  line-height: 1;
+  color: var(--color-muted);
+  flex-shrink: 0;
+}
+
+.fav-item__remove:hover {
+  background-color: var(--color-brick-soft);
+  color: var(--color-brick);
+}
+
+.fav-drawer__footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1rem 1.15rem;
+  border-top: 1px solid var(--border-subtle);
+  background-color: var(--color-cream);
+}
+
+.fav-drawer__footer[hidden] {
+  display: none;
+}
+
+.fav-empty {
+  text-align: center;
+  padding: 2.5rem 1rem;
+  color: var(--color-muted);
+}
+
+.fav-empty__icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 0.9rem;
+  border-radius: 50%;
+  background-color: var(--color-brick-soft);
+  color: var(--color-brick);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fav-empty__icon svg {
+  width: 26px;
+  height: 26px;
+}
+
+.fav-empty h3 {
+  font-size: 1.15rem;
+  margin-bottom: 0.4rem;
+  color: var(--color-dark);
+}
+
+.xq-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 1.5rem;
+  z-index: 1000;
+  max-width: min(92vw, 460px);
+  padding: 0.75rem 1.2rem;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-dark);
+  color: var(--color-ivory);
+  font-size: 0.88rem;
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+  transform: translate(-50%, 20px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-base), transform var(--transition-base);
+}
+
+.xq-toast.is-visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* ---------------- LỌC NHANH (BEST-SELLER / ĐÃ LƯU) ---------------- */
+.quick-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.quick-chip {
+  padding: 0.62rem 1.05rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-strong);
+  background-color: var(--color-cream);
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--color-dark-soft);
+  transition: background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.quick-chip:hover {
+  border-color: var(--color-brick);
+  color: var(--color-brick);
+}
+
+.quick-chip.is-active {
+  background-color: var(--color-brick);
+  border-color: var(--color-brick);
+  color: var(--color-ivory);
+}
+
+/* ---------------- FORM ĐÓNG GÓP QUÁN NGON ---------------- */
+.contribute-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.75rem, 4vw, 3.5rem);
+  align-items: start;
+}
+
+.contribute-card {
+  background-color: var(--color-ivory);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.25rem, 3vw, 2rem);
+  box-shadow: var(--shadow-md);
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 1rem;
+}
+
+.form-row label {
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--color-dark-soft);
+}
+
+.form-row .req {
+  color: var(--color-brick);
+}
+
+.form-row input,
+.form-row select,
+.form-row textarea {
+  width: 100%;
+  padding: 0.75rem 0.95rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-strong);
+  background-color: var(--color-cream);
+  font-size: 0.95rem;
+  color: var(--color-dark);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
+}
+
+.form-row textarea {
+  resize: vertical;
+  min-height: 84px;
+}
+
+.form-row input:focus,
+.form-row select:focus,
+.form-row textarea:focus {
+  outline: none;
+  background-color: var(--color-ivory);
+  border-color: var(--color-brick);
+  box-shadow: 0 0 0 3px rgba(180, 70, 43, 0.14);
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 0.4rem;
+}
+
+.form-actions [hidden] {
+  display: none;
+}
+
+.contribute-msg {
+  margin-top: 0.9rem;
+  font-size: 0.86rem;
+  color: var(--color-muted);
+}
+
+.contribute-msg:empty {
+  display: none;
+}
+
+.contribute-msg.is-error {
+  color: var(--color-brick-dark);
+  font-weight: 600;
+}
+
+.contribute-msg.is-success {
+  color: var(--color-sage);
+  font-weight: 600;
+}

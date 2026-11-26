@@ -91,6 +91,7 @@ XQ.Modal = (function () {
         ' data-fallback-icon="' + XQ.escapeHtml(catIcon) + '"' +
         ' onerror="XQ.onImgError(this)">' +
       '<div class="dish-modal__hero-grad"></div>' +
+      XQ.favButton(dish.id, 'modal') +
       '<div class="dish-modal__header-overlay">' +
         '<div class="dish-modal__tags">' +
           '<span class="badge badge--category">' + XQ.icons.pin + ' ' + XQ.escapeHtml(dish.area) + '</span>' +
@@ -125,6 +126,7 @@ XQ.Modal = (function () {
   function bindGlobalClicks(pathPrefix) {
     basePath = pathPrefix || '';
     document.addEventListener('click', function (e) {
+      if (e.target.closest('[data-fav-toggle]')) return;
       var card = e.target.closest('[data-dish-id]');
       if (!card) return;
       if (e.target.closest('a')) return;
@@ -134,6 +136,7 @@ XQ.Modal = (function () {
 
     document.addEventListener('keydown', function (e) {
       if (e.key !== 'Enter' && e.key !== ' ') return;
+      if (e.target.closest('[data-fav-toggle]')) return;
       var card = e.target.closest('[data-dish-id]');
       if (!card) return;
       e.preventDefault();

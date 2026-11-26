@@ -8,7 +8,9 @@ XQ.Filter = (function () {
   var state = {
     category: 'all',
     region: 'all',
-    query: ''
+    query: '',
+    best: false,
+    saved: false
   };
 
   var currentResults = [];
@@ -32,13 +34,15 @@ XQ.Filter = (function () {
   }
 
   function filterDishes(customState) {
-    var s = customState || state;
+    var s = customState ? Object.assign({ best: state.best, saved: state.saved }, customState) : state;
     var nq = XQ.normalize(s.query);
     return (XQ.dishes || []).filter(function (dish) {
       var okCat = s.category === 'all' || dish.category === s.category;
       var okReg = s.region === 'all' || (dish.regions || []).indexOf(s.region) !== -1;
       var okQuery = matchesQuery(dish, nq);
-      return okCat && okReg && okQuery;
+      var okBest = !s.best || Boolean(dish.bestseller);
+      var okSaved = !s.saved || Boolean(XQ.Favorites && XQ.Favorites.has(dish.id));
+      return okCat && okReg && okQuery && okBest && okSaved;
     });
   }
 
@@ -72,6 +76,17 @@ XQ.Filter = (function () {
     });
   }
 
+  function syncQuickUI() {
+    if (els.quickBest) {
+      els.quickBest.classList.toggle('is-active', state.best);
+      els.quickBest.setAttribute('aria-pressed', String(state.best));
+    }
+    if (els.quickSaved) {
+      els.quickSaved.classList.toggle('is-active', state.saved);
+      els.quickSaved.setAttribute('aria-pressed', String(state.saved));
+    }
+  }
+
   function renderStatus() {
     if (!els.statusCount || !els.chips) return;
     var total = (XQ.dishes || []).length;
@@ -90,6 +105,12 @@ XQ.Filter = (function () {
       if (reg) {
         chips.push('<span class="filter-chip">Khu vực: ' + XQ.escapeHtml(reg.short) + ' <button type="button" data-clear="region" aria-label="Bỏ lọc khu vực">&times;</button></span>');
       }
+    }
+    if (state.best) {
+      chips.push('<span class="filter-chip">Chỉ Best-seller <button type="button" data-clear="best" aria-label="Bỏ lọc Best-seller">&times;</button></span>');
+    }
+    if (state.saved) {
+      chips.push('<span class="filter-chip">Món đã lưu <button type="button" data-clear="saved" aria-label="Bỏ lọc món đã lưu">&times;</button></span>');
     }
     if (state.query.trim()) {
       chips.push('<span class="filter-chip">Từ khóa: “' + XQ.escapeHtml(state.query.trim()) + '” <button type="button" data-clear="query" aria-label="Xóa từ khóa">&times;</button></span>');
@@ -119,6 +140,7 @@ XQ.Filter = (function () {
 
     renderCategoryTabs();
     syncRegionUI();
+    syncQuickUI();
     renderStatus();
 
     if (els.searchClear) {
@@ -136,6 +158,21 @@ XQ.Filter = (function () {
     els.chips = document.getElementById('filter-chips');
 
     if (!els.grid) return;
+
+    els.quickBest = document.getElementById('quick-best');
+    els.quickSaved = document.getElementById('quick-saved');
+    if (els.quickBest) {
+      els.quickBest.addEventListener('click', function () {
+        state.best = !state.best;
+        renderGrid();
+      });
+    }
+    if (els.quickSaved) {
+      els.quickSaved.addEventListener('click', function () {
+        state.saved = !state.saved;
+        renderGrid();
+      });
+    }
 
     // Đổ danh sách 5 khu vực vào select
     if (els.regionSelect) {
@@ -184,18 +221,27 @@ XQ.Filter = (function () {
       var clearBtn = e.target.closest('[data-clear]');
       if (!clearBtn) return;
       var target = clearBtn.getAttribute('data-clear');
-      if (target === 'category') state.category = 'all';
+      if (target === 'best') state.best = false;
+      else if (target === 'saved') state.saved = false;
+      else if (target === 'category') state.category = 'all';
       else if (target === 'region') state.region = 'all';
       else if (target === 'query') {
         state.query = '';
         if (els.searchInput) els.searchInput.value = '';
       } else if (target === 'all') {
+        state.best = false;
+        state.saved = false;
         state.category = 'all';
         state.region = 'all';
         state.query = '';
         if (els.searchInput) els.searchInput.value = '';
       }
       renderGrid();
+    });
+
+    // Khi người dùng lưu / bỏ lưu món: cập nhật lại lưới nếu đang lọc "Đã lưu"
+    document.addEventListener('xq:favorites-changed', function () {
+      if (state.saved) renderGrid();
     });
 
     renderGrid();

@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="assets/images/banners/hero.jpg">
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/layout.css">
@@ -150,7 +151,7 @@
       <div class="container">
         <div class="section-header section-header--split reveal">
           <div>
-            <span class="section-eyebrow">Tinh hoa phải thử</span>
+            <span class="section-eyebrow">Món nhất định phải thử</span>
             <h2 class="section-title">6 Món Đặc Sản Nổi Bật Nhất</h2>
             <p class="section-lead">
               Những hương vị làm nên thương hiệu ẩm thực Quảng Ngãi. Nhấn vào từng món để xem đầy đủ xuất xứ,
@@ -211,6 +212,11 @@
             <div class="region-select-wrap">
               <label for="region-filter">Khu vực:</label>
               <select id="region-filter" class="region-select"></select>
+            </div>
+
+            <div class="quick-chips" role="group" aria-label="Lọc nhanh">
+              <button type="button" class="quick-chip" id="quick-best" aria-pressed="false">★ Best-seller</button>
+              <button type="button" class="quick-chip" id="quick-saved" aria-pressed="false">♥ Đã lưu</button>
             </div>
           </div>
 
@@ -276,6 +282,59 @@
         </div>
 
         <div class="stories-grid reveal" id="stories-grid"></div>
+      </div>
+    </section>
+
+    <!-- ==================== 6B. ĐÓNG GÓP QUÁN NGON ==================== -->
+    <section class="section section--alt" id="dong-gop">
+      <div class="container">
+        <div class="contribute-grid">
+          <div class="reveal">
+            <span class="section-eyebrow">Cộng đồng xứ Quảng</span>
+            <h2 class="section-title">Bạn biết quán ngon? Hãy chia sẻ cùng chúng tôi</h2>
+            <p class="section-lead" style="margin-bottom:1.1rem;">
+              Người địa phương và du khách có thể gửi thêm quán ăn, địa điểm làng nghề hoặc cảm nhận sau khi thưởng thức.
+              Thông tin sau khi kiểm chứng sẽ được cập nhật vào cẩm nang.
+            </p>
+            <ul class="dish-list">
+              <li>Điền tên món, tên quán và địa chỉ (cảm nhận là tùy chọn).</li>
+              <li>Bấm gửi: nội dung được sao chép sẵn và mở Zalo để bạn dán gửi đi.</li>
+              <li>Không cần tạo tài khoản, không lưu thông tin của bạn lên máy chủ.</li>
+            </ul>
+          </div>
+
+          <form class="contribute-card reveal" id="contribute-form" novalidate>
+            <div class="form-row">
+              <label for="contrib-dish">Món đặc sản <span class="req">*</span></label>
+              <input type="text" id="contrib-dish" placeholder="Ví dụ: Mì Quảng, Bánh xèo..." autocomplete="off">
+            </div>
+            <div class="form-row">
+              <label for="contrib-place">Tên quán / địa điểm <span class="req">*</span></label>
+              <input type="text" id="contrib-place" placeholder="Tên quán bạn muốn giới thiệu" autocomplete="off">
+            </div>
+            <div class="form-row">
+              <label for="contrib-address">Địa chỉ <span class="req">*</span></label>
+              <input type="text" id="contrib-address" placeholder="Số nhà, đường, phường/xã" autocomplete="street-address">
+            </div>
+            <div class="form-row">
+              <label for="contrib-region">Khu vực</label>
+              <select id="contrib-region"></select>
+            </div>
+            <div class="form-row">
+              <label for="contrib-note">Cảm nhận / ghi chú</label>
+              <textarea id="contrib-note" rows="3" placeholder="Vì sao bạn thích quán này? Giờ mở cửa, mức giá..."></textarea>
+            </div>
+            <div class="form-row">
+              <label for="contrib-sender">Tên của bạn</label>
+              <input type="text" id="contrib-sender" placeholder="Không bắt buộc" autocomplete="name">
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn--primary">Gửi qua Zalo</button>
+              <button type="button" class="btn btn--secondary" id="contrib-email-btn">Gửi qua Email</button>
+            </div>
+            <p class="contribute-msg" id="contribute-msg" role="status" aria-live="polite"></p>
+          </form>
+        </div>
       </div>
     </section>
 
@@ -353,6 +412,7 @@
             <li><a href="pages/khu-vuc.html?id=tra-bong">Vùng cao Trà Bồng</a></li>
             <li><a href="pages/khu-vuc.html?id=lang-nghe">Làng nghề truyền thống</a></li>
             <li><a href="pages/lo-trinh.html" target="_blank" rel="noopener noreferrer">Lộ trình Food Tour &amp; Bản đồ ↗</a></li>
+            <li><a href="#dong-gop">Đóng góp quán ngon</a></li>
           </ul>
         </div>
 
@@ -390,8 +450,10 @@
   <script src="js/data/regions.js"></script>
   <script src="js/data/dishes.js"></script>
   <script src="js/data/stories.js"></script>
+  <script src="js/data/shops.js"></script>
   <script src="js/modules/render.js"></script>
   <script src="js/modules/filter.js"></script>
+  <script src="js/modules/favorites.js"></script>
   <script src="js/modules/modal.js"></script>
   <script src="js/main.js"></script>
 </body>
